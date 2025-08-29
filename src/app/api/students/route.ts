@@ -89,60 +89,83 @@ export async function POST(request: NextRequest) {
 }
 
 // ===== GET - Fetch Student Resume Data =====
-export async function GET(request: NextRequest) {
+// export async function GET(request: NextRequest) {
+//   try {
+//     const { searchParams } = new URL(request.url);
+//     const userId = searchParams.get('userId');
+//     const studentId = searchParams.get('id');
+    
+//     // if (!userId && !studentId) {
+//     //   return NextResponse.json(
+//     //     { error: "Either userId or studentId is required" },
+//     //     { status: 400 }
+//     //   );
+//     // }
+    
+//     let student;
+    
+//     if (studentId) {
+//       // Get by student ID
+//       const result = await db
+//         .select()
+//         .from(StudentsTable)
+//         .where(eq(StudentsTable.id, studentId))
+//         .limit(1);
+      
+//       student = result[0];
+//     } else if (userId) {
+//       // Get by user ID (most common for logged-in users)
+//       const result = await db
+//         .select()
+//         .from(StudentsTable)
+//         .where(eq(StudentsTable.userId, userId))
+//         .limit(1);
+      
+//       student = result[0];
+//     }
+//     else{
+//       const result= await db.select().from(StudentsTable)
+//       student =result[0];
+//     }
+    
+//     if (!student) {
+//       return NextResponse.json(
+//         { error: "Resume data not found" },
+//         { status: 404 }
+//       );
+//     }
+    
+//     return NextResponse.json({
+//       success: true,
+//       data: student,
+//       message: "Resume data retrieved successfully"
+//     });
+    
+//   } catch (error) {
+//     console.error("Error fetching student resume:", error);
+//     return NextResponse.json(
+//       { error: "Failed to fetch resume data" },
+//       { status: 500 }
+//     );
+//   }
+// }
+
+export async function GET(request : NextRequest){
   try {
     const { searchParams } = new URL(request.url);
-    const userId = searchParams.get('userId');
-    const studentId = searchParams.get('id');
-    
-    if (!userId && !studentId) {
-      return NextResponse.json(
-        { error: "Either userId or studentId is required" },
-        { status: 400 }
-      );
+    const id = searchParams.get('id');
+    const student = await db.select().from(StudentsTable)
+
+    if(id){
+      const student = (await db.select().from(StudentsTable).where(eq(StudentsTable.id,id)))
+        return NextResponse.json(student)
+
     }
-    
-    let student;
-    
-    if (studentId) {
-      // Get by student ID
-      const result = await db
-        .select()
-        .from(StudentsTable)
-        .where(eq(StudentsTable.id, studentId))
-        .limit(1);
-      
-      student = result[0];
-    } else if (userId) {
-      // Get by user ID (most common for logged-in users)
-      const result = await db
-        .select()
-        .from(StudentsTable)
-        .where(eq(StudentsTable.userId, userId))
-        .limit(1);
-      
-      student = result[0];
-    }
-    
-    if (!student) {
-      return NextResponse.json(
-        { error: "Resume data not found" },
-        { status: 404 }
-      );
-    }
-    
-    return NextResponse.json({
-      success: true,
-      data: student,
-      message: "Resume data retrieved successfully"
-    });
-    
+    return NextResponse.json(student)
   } catch (error) {
-    console.error("Error fetching student resume:", error);
-    return NextResponse.json(
-      { error: "Failed to fetch resume data" },
-      { status: 500 }
-    );
+    console.log(error);
+     return NextResponse.json(error)
+    
   }
 }
 
