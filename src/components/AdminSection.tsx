@@ -117,13 +117,14 @@ const AdminSection = () => {
                 alt="AI Saathi Logo" 
                 className="h-10 w-auto" 
               />
-              <div className="ml-3 hidden lg:block">
- <h1 
-  className="text-lg font-bold" 
-  style={{ color: "rgb(124, 58, 237)" }}
->
-  AI Saathi
-</h1>                <p className="text-slate-500 text-xs font-medium">Admin Panel</p>
+              <div className="ml-3">
+                <h1 
+                  className="text-lg font-bold" 
+                  style={{ color: "rgb(124, 58, 237)" }}
+                >
+                  AI Saathi
+                </h1>
+                <p className="text-slate-500 text-xs font-medium">Admin Panel</p>
               </div>
             </div>
             <button className="md:hidden p-2 rounded-lg hover:bg-slate-100" onClick={() => setSidebarOpen(false)}>
@@ -189,7 +190,7 @@ const AdminSection = () => {
                 <span className="text-white font-semibold text-sm">AD</span>
               </div>
             </div>
-            <div className="ml-3 hidden lg:block">
+            <div className="ml-3">
               <p className="text-sm font-semibold text-slate-900">Admin User</p>
               <p className="text-xs text-slate-500">admin@aisaathi.com</p>
             </div>
@@ -211,15 +212,18 @@ const AdminSection = () => {
               </svg>
             </button>
             <div className="flex items-center">
-<img 
+              <img 
                 src="/logo.png" 
                 alt="AI Saathi Logo" 
                 className="h-8 w-auto" 
-              />              </div>
-              <h1 className="text-lg font-bold text-slate-900">Admin Panel</h1>
-          </div>
-          <div className="h-8 w-8 rounded-full bg-gradient-to-br from-indigo-400 to-purple-500 flex items-center justify-center">
-            <span className="text-white font-semibold text-xs">AD</span>
+              />
+              <h1 
+                className="ml-3 text-lg font-bold" 
+                style={{ color: "rgb(124, 58, 237)" }}
+              >
+                AI Saathi
+              </h1>
+            </div>
           </div>
         </div>
 
@@ -331,11 +335,11 @@ const AdminSection = () => {
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"></path>
                             </svg>
                           </button>
-<button className="inline-flex items-center p-2 text-slate-400 hover:text-emerald-600 hover:bg-emerald-50 rounded-lg transition-colors">
-  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
-  </svg>
-</button>
+                          <button className="inline-flex items-center p-2 text-slate-400 hover:text-emerald-600 hover:bg-emerald-50 rounded-lg transition-colors">
+                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+                            </svg>
+                          </button>
                           <button className="inline-flex items-center p-2 text-slate-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors">
                             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
@@ -383,8 +387,8 @@ const AdminSection = () => {
                       </svg>
                     </button>
                     <button className="inline-flex items-center p-2 text-slate-400 hover:text-emerald-600 hover:bg-emerald-50 rounded-lg transition-colors">
-                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
                       </svg>
                     </button>
                     <button className="inline-flex items-center p-2 text-slate-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors">
