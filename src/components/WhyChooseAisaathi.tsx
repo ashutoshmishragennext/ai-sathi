@@ -14,43 +14,43 @@ export default function WhyChooseAiSaathi() {
       name: 'Beautiful Templates',
       description: 'Professionally designed templates to make your resume stand out.',
       icon: '📄',
-      gradient: 'linear-gradient(135deg, #f5f3ff 0%, #ede9fe 100%)',
-      color: '#8b5cf6'
+      gradient: 'linear-gradient(135deg, #f3f0ff 0%, #e6e0ff 100%)',
+      color: '#7e69b3'
     },
     {
       name: 'Secure & Private',
       description: 'Your data is protected with top-tier encryption and privacy measures.',
       icon: '🔒',
-      gradient: 'linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%)',
-      color: '#a855f7'
+      gradient: 'linear-gradient(135deg, #f5f0ff 0%, #e8e0ff 100%)',
+      color: '#8a75c1'
     },
     {
       name: '24/7 Support',
       description: 'Round-the-clock assistance to help you craft the perfect resume.',
       icon: '🛟',
-      gradient: 'linear-gradient(135deg, #f5f3ff 0%, #ede9fe 100%)',
-      color: '#7c3aed'
+      gradient: 'linear-gradient(135deg, #f7f2ff 0%, #ebe0ff 100%)',
+      color: '#9682cf'
     },
     {
       name: 'Lightning Fast',
       description: 'Create and download your resume in minutes with our streamlined process.',
       icon: '⚡',
-      gradient: 'linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%)',
-      color: '#a855f7'
+      gradient: 'linear-gradient(135deg, #f9f4ff 0%, #eee0ff 100%)',
+      color: '#a28edd'
     },
     {
       name: 'ATS-Friendly Templates',
       description: 'Templates optimized to pass applicant tracking systems with ease.',
       icon: '✅',
-      gradient: 'linear-gradient(135deg, #f5f3ff 0%, #ede9fe 100%)',
-      color: '#8b5cf6'
+      gradient: 'linear-gradient(135deg, #fbf6ff 0%, #f1e0ff 100%)',
+      color: '#ae9beb'
     },
     {
       name: 'AI-Powered Optimization',
       description: 'Smart AI tailors your resume for maximum impact and relevance.',
       icon: '✨',
-      gradient: 'linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%)',
-      color: '#a855f7'
+      gradient: 'linear-gradient(135deg, #fdf8ff 0%, #f4e0ff 100%)',
+      color: '#baa9f9'
     },
   ];
 
@@ -96,7 +96,7 @@ export default function WhyChooseAiSaathi() {
       
       <style jsx>{`
         .why-choose-section {
-          background: linear-gradient(135deg, #fafafa 0%, #f5f3ff 100%);
+          background: linear-gradient(135deg, #fafafa 0%, #f8f5ff 100%);
           padding: 2rem 1rem;
         }
         
@@ -126,7 +126,7 @@ export default function WhyChooseAiSaathi() {
         }
         
         .gradient-text {
-          background: linear-gradient(90deg, #8b5cf6 0%, #7c3aed 100%);
+          background: linear-gradient(90deg, #7e69b3 0%, #a28edd 100%);
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
           background-clip: text;
