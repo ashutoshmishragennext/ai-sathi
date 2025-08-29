@@ -77,7 +77,7 @@ export default function Pricing() {
             >
               <div
                 className={`relative rounded-full w-8 h-4 transition duration-200 ease-linear ${
-                  billingCycle === 'yearly' ? 'bg-blue-600' : 'bg-gray-300'
+                  billingCycle === 'yearly' ? 'bg-purple-600' : 'bg-gray-300'
                 }`}
               >
                 <div
@@ -93,14 +93,14 @@ export default function Pricing() {
               }`}
             >
               Yearly{' '}
-              <span className="text-xs text-blue-600 bg-blue-100 px-1 py-0.5 rounded-full">
+              <span className="text-xs text-purple-600 bg-purple-100 px-1 py-0.5 rounded-full">
                 Save 10%
               </span>
             </span>
           </div>
         </div>
 
-        <div className="bg-blue-50 rounded-xl p-6">
+        <div className="bg-purple-50 rounded-xl p-6">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {plans.map((plan, index) => (
               <div
@@ -110,7 +110,7 @@ export default function Pricing() {
               >
                 <div className="pt-6 pb-3 px-4 bg-white">
                   {plan.popular && (
-                    <div className="mb-2 bg-blue-500 text-white text-xs font-semibold px-2 py-0.5 rounded-full inline-block">
+                    <div className="mb-2 bg-purple-500 text-white text-xs font-semibold px-2 py-0.5 rounded-full inline-block">
                       POPULAR
                     </div>
                   )}
@@ -143,7 +143,7 @@ export default function Pricing() {
                     {plan.features.map((feature, idx) => (
                       <li key={idx} className="flex items-start">
                         <svg
-                          className="h-3 w-3 text-blue-500 mr-2 mt-0.5 flex-shrink-0"
+                          className="h-3 w-3 text-purple-500 mr-2 mt-0.5 flex-shrink-0"
                           fill="none"
                           viewBox="0 0 24 24"
                           stroke="currentColor"
@@ -165,7 +165,7 @@ export default function Pricing() {
                   <button
                     className={`w-full py-1.5 px-3 rounded-md font-medium text-xs transition-all duration-200 ${
                       plan.popular
-                        ? 'bg-blue-600 hover:bg-blue-700 text-white shadow-sm'
+                        ? 'bg-purple-600 hover:bg-purple-700 text-white shadow-sm'
                         : 'bg-gray-100 hover:bg-gray-200 text-gray-800 border border-gray-300'
                     }`}
                   >

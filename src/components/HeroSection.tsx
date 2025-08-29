@@ -11,13 +11,13 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="bg-blue-50">
+    <section className="bg-purple-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
         <div className="text-center">
           {/* Headline */}
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
             Create Your Perfect Resume with{' '}<br></br>
-            <span className={`text-blue-600 inline-block ${isVisible ? 'animate-pulse-slow' : ''}`}>
+            <span className={`text-purple-600 inline-block ${isVisible ? 'animate-pulse-slow' : ''}`}>
               AiSaathi
             </span>
           </h1>
@@ -30,13 +30,13 @@ export default function Hero() {
           <div className="flex justify-center space-x-4">
             <Link
               href="/get-started"
-              className="text-sm px-6 py-3 rounded-md bg-gradient-to-r from-blue-700 to-cyan-500 text-white hover:from-blue-600 hover:to-cyan-600 hover:scale-105 hover:shadow-md transition-all duration-200"
+              className="text-sm px-6 py-3 rounded-md bg-gradient-to-r from-purple-700 to-purple-500 text-white hover:from-purple-600 hover:to-purple-400 hover:scale-105 hover:shadow-md transition-all duration-200"
             >
               Start Building Now
             </Link>
             <Link
               href="/features"
-              className="text-sm px-6 py-3 rounded-md border border-blue-600 text-blue-600 hover:bg-blue-50 hover:scale-105 hover:shadow-md transition-all duration-200"
+              className="text-sm px-6 py-3 rounded-md border border-purple-600 text-purple-600 hover:bg-purple-50 hover:scale-105 hover:shadow-md transition-all duration-200"
             >
               Explore Templates
             </Link>
