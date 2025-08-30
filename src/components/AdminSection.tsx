@@ -1,9 +1,25 @@
+// 
+
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from 'react';
+
+// Add type definitions
+type StudentStatus = 'Completed' | 'In Progress' | 'Not Started';
+
+interface Student {
+  id: number;
+  name: string;
+  email: string;
+  phone: string;
+  status: StudentStatus;
+  lastUpdated: string;
+}
 
 const AdminSection = () => {
   const [activeTab, setActiveTab] = useState('students');
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [students, setStudents] = useState([
+  const [students, setStudents] = useState<Student[]>([
     {
       id: 1,
       name: 'John Smith',
@@ -87,8 +103,8 @@ const AdminSection = () => {
     setCurrentPage(prev => Math.min(prev + 1, totalPages));
   };
 
-  const getStatusBadge = (status) => {
-    const statusStyles = {
+  const getStatusBadge = (status: StudentStatus) => {
+    const statusStyles: Record<StudentStatus, string> = {
       'Completed': 'bg-emerald-50 text-emerald-700 border-emerald-200',
       'In Progress': 'bg-amber-50 text-amber-700 border-amber-200',
       'Not Started': 'bg-slate-50 text-slate-700 border-slate-200'

@@ -3,6 +3,7 @@
 // ===== 1. UPDATED SCHEMA (schema.ts) =====
 import { InferModel } from "drizzle-orm";
 import {
+  boolean,
   index,
   jsonb,
   pgEnum,
@@ -133,6 +134,213 @@ export const PasswordResetTokenTable = pgTable(
     uniqueIndex("password_reset_tokens_token_key").on(table.token),
   ]
 );
+// Add this to your existing schema.ts file
+
+// ===== STUDENTS TABLE FOR RESUME BUILDER =====
+export const StudentsTable = pgTable(
+  "students",
+  {
+    id: uuid("id").defaultRandom().primaryKey().notNull(),
+    userId: uuid("user_id").notNull(), // Foreign key to UsersTable
+    
+    // Personal Information
+    firstName: text("first_name").notNull(),
+    lastName: text("last_name").notNull(),
+    email: text("email").notNull(),
+    phone: text("phone"),
+    dateOfBirth: timestamp("date_of_birth", { mode: "date" }),
+    address: text("address"),
+    city: text("city"),
+    state: text("state"),
+    country: text("country").default("India"),
+    pincode: text("pincode"),
+    
+    // Professional Details
+    profilePicture: text("profile_picture"), // URL to uploaded image
+    professionalSummary: text("professional_summary"),
+    linkedinUrl: text("linkedin_url"),
+    githubUrl: text("github_url"),
+    portfolioUrl: text("portfolio_url"),
+    
+    // Education (JSON array for multiple entries)
+    education: jsonb("education"), // Array of education objects
+    
+    // Experience (JSON array for multiple entries)
+    experience: jsonb("experience"), // Array of experience objects
+    
+    // Skills (JSON array)
+    skills: jsonb("skills"), // Categorized skills object
+    
+    // Projects (JSON array)
+    personalProjects: jsonb("personal_projects"), // Array of project objects
+    
+    // Certifications & Achievements
+    certifications: jsonb("certifications"), // Array of certification objects
+    achievements: jsonb("achievements"), // Array of achievement objects
+    
+    // Additional Information
+    languages: jsonb("languages"), // Array of language proficiency objects
+    interests: jsonb("interests"), // Array of interests/hobbies
+    references: jsonb("references"), // Array of reference objects
+    
+    // Resume Preferences
+    resumeTemplate: text("resume_template").default("modern"), // Template preference
+    resumeColor: text("resume_color").default("#000000"), // Color scheme preference
+    
+    // Metadata
+    isProfileComplete: boolean("is_profile_complete").default(false),
+    lastResumeGenerated: timestamp("last_resume_generated", { mode: "date" }),
+    createdAt: timestamp("created_at").defaultNow().notNull(),
+    updatedAt: timestamp("updated_at").defaultNow().notNull(),
+  },
+  (table) => [
+    uniqueIndex("students_email_key").on(table.email),
+    index("students_user_idx").on(table.userId),
+    index("students_name_idx").on(table.firstName, table.lastName),
+    index("students_location_idx").on(table.city, table.state),
+    index("students_profile_complete_idx").on(table.isProfileComplete),
+  ]
+);
+
+export type Student = InferModel<typeof StudentsTable>;
+export type NewStudent = InferModel<typeof StudentsTable, "insert">;
+
+// ===== TYPE DEFINITIONS FOR JSON FIELDS =====
+
+export interface EducationEntry {
+  id: string;
+  institution: string;
+  degree: string;
+  field: string;
+  startDate: string;
+  endDate?: string; // Optional for current education
+  cgpa?: string;
+  percentage?: string;
+  location: string;
+  achievements?: string[];
+  order: number;
+}
+
+export interface ExperienceEntry {
+  id: string;
+  company: string;
+  position: string;
+  startDate: string;
+  endDate?: string; // Optional for current job
+  location: string;
+  description: string;
+  responsibilities: string[];
+  technologies?: string[];
+  achievements?: string[];
+  order: number;
+}
+
+export interface SkillsData {
+  technical: string[];
+  programming: string[];
+  frameworks: string[];
+  databases: string[];
+  tools: string[];
+  soft: string[];
+  other: string[];
+}
+
+export interface ProjectEntry {
+  id: string;
+  name: string;
+  description: string;
+  technologies: string[];
+  startDate?: string;
+  endDate?: string;
+  githubUrl?: string;
+  liveUrl?: string;
+  features: string[];
+  order: number;
+}
+
+export interface CertificationEntry {
+  id: string;
+  name: string;
+  issuer: string;
+  issueDate: string;
+  expiryDate?: string;
+  credentialId?: string;
+  url?: string;
+  order: number;
+}
+
+export interface AchievementEntry {
+  id: string;
+  title: string;
+  description: string;
+  date: string;
+  organization?: string;
+  order: number;
+}
+
+export interface LanguageEntry {
+  id: string;
+  language: string;
+  proficiency: "Beginner" | "Intermediate" | "Advanced" | "Native";
+  order: number;
+}
+
+export interface ReferenceEntry {
+  id: string;
+  name: string;
+  position: string;
+  company: string;
+  email: string;
+  phone?: string;
+  relationship: string;
+  order: number;
+}
+
+// ===== RESUME TEMPLATES TABLE (Optional - for storing custom templates) =====
+export const ResumeTemplatesTable = pgTable(
+  "resume_templates",
+  {
+    id: uuid("id").defaultRandom().primaryKey().notNull(),
+    name: text("name").notNull(),
+    description: text("description"),
+    templateData: jsonb("template_data").notNull(), // Template structure/layout data
+    previewImage: text("preview_image"), // URL to template preview
+    category: text("category").default("professional"), // professional, creative, academic, etc.
+    isActive: boolean("is_active").default(true),
+    createdAt: timestamp("created_at").defaultNow().notNull(),
+    updatedAt: timestamp("updated_at").defaultNow().notNull(),
+  },
+  (table) => [
+    uniqueIndex("resume_templates_name_key").on(table.name),
+    index("resume_templates_category_idx").on(table.category),
+    index("resume_templates_active_idx").on(table.isActive),
+  ]
+);
+
+export type ResumeTemplate = InferModel<typeof ResumeTemplatesTable>;
+export type NewResumeTemplate = InferModel<typeof ResumeTemplatesTable, "insert">;
+
+// ===== GENERATED RESUMES TABLE (Optional - for tracking resume generations) =====
+export const GeneratedResumesTable = pgTable(
+  "generated_resumes",
+  {
+    id: uuid("id").defaultRandom().primaryKey().notNull(),
+    studentId: uuid("student_id").notNull(),
+    templateId: uuid("template_id"),
+    resumeData: jsonb("resume_data").notNull(), // Complete resume data at time of generation
+    pdfUrl: text("pdf_url"), // URL to generated PDF
+    customizations: jsonb("customizations"), // Any custom modifications made
+    generatedAt: timestamp("generated_at").defaultNow().notNull(),
+  },
+  (table) => [
+    index("generated_resumes_student_idx").on(table.studentId),
+    index("generated_resumes_template_idx").on(table.templateId),
+    index("generated_resumes_date_idx").on(table.generatedAt),
+  ]
+);
+
+export type GeneratedResume = InferModel<typeof GeneratedResumesTable>;
+export type NewGeneratedResume = InferModel<typeof GeneratedResumesTable, "insert">;
 
 
 
