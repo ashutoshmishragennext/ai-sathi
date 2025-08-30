@@ -4,7 +4,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { db } from '@/db';
 import { StudentsTable } from '@/db/schema';
-import { eq, desc } from 'drizzle-orm';
+import { eq} from 'drizzle-orm';
 
 // ===== POST - Create/Save Student Resume Data =====
 export async function POST(request: NextRequest) {
