@@ -1,76 +1,53 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+
+interface Student {
+  id: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone?: string;
+}
 
 const AdminSection = () => {
   const [activeTab, setActiveTab] = useState('students');
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [students, setStudents] = useState([
-    {
-      id: 1,
-      name: 'John Smith',
-      email: 'john.smith@example.com',
-      phone: '+1 (555) 123-4567',
-      status: 'Completed',
-      lastUpdated: '2023-10-15',
-    },
-    {
-      id: 2,
-      name: 'Emma Johnson',
-      email: 'emma.j@example.com',
-      phone: '+1 (555) 987-6543',
-      status: 'In Progress',
-      lastUpdated: '2023-10-14',
-    },
-    {
-      id: 3,
-      name: 'Michael Brown',
-      email: 'm.brown@example.com',
-      phone: '+1 (444) 555-0123',
-      status: 'Not Started',
-      lastUpdated: '2023-10-10',
-    },
-    {
-      id: 4,
-      name: 'Sarah Davis',
-      email: 'sarah.d@example.com',
-      phone: '+1 (444) 567-8901',
-      status: 'Completed',
-      lastUpdated: '2023-10-12',
-    },
-    {
-      id: 5,
-      name: 'David Wilson',
-      email: 'd.wilson@example.com',
-      phone: '+1 (333) 888-4567',
-      status: 'In Progress',
-      lastUpdated: '2023-10-13',
-    },
-    {
-      id: 6,
-      name: 'Jennifer Lee',
-      email: 'j.lee@example.com',
-      phone: '+1 (222) 777-1234',
-      status: 'Completed',
-      lastUpdated: '2023-10-11',
-    },
-    {
-      id: 7,
-      name: 'Robert Taylor',
-      email: 'r.taylor@example.com',
-      phone: '+1 (222) 555-9876',
-      status: 'Not Started',
-      lastUpdated: '2023-10-09',
-    },
-  ]);
+  const [students, setStudents] = useState<Student[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   const [searchTerm, setSearchTerm] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 5;
 
+  // Fetch students data from backend
+  useEffect(() => {
+    const fetchStudents = async () => {
+      try {
+        setLoading(true);
+        const response = await fetch('/api/students');
+        if (!response.ok) {
+          throw new Error('Failed to fetch students');
+        }
+        const data = await response.json();
+        setStudents(data);
+      } catch (err) {
+        setError(err instanceof Error ? err.message : 'An unknown error occurred');
+        console.error('Error fetching students:', err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    if (activeTab === 'students') {
+      fetchStudents();
+    }
+  }, [activeTab]);
+
   const filteredStudents = students.filter(
     (student) =>
-      student.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      `${student.firstName} ${student.lastName}`.toLowerCase().includes(searchTerm.toLowerCase()) ||
       student.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      student.phone.includes(searchTerm)
+      (student.phone && student.phone.includes(searchTerm))
   );
 
   // Pagination logic
@@ -87,23 +64,35 @@ const AdminSection = () => {
     setCurrentPage(prev => Math.min(prev + 1, totalPages));
   };
 
-  const getStatusBadge = (status) => {
-    const statusStyles = {
-      'Completed': 'bg-emerald-50 text-emerald-700 border-emerald-200',
-      'In Progress': 'bg-amber-50 text-amber-700 border-amber-200',
-      'Not Started': 'bg-slate-50 text-slate-700 border-slate-200'
-    };
-    
+  // Loading state
+  if (loading) {
     return (
-      <span className={`inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium border ${statusStyles[status]}`}>
-        <div className={`w-1.5 h-1.5 rounded-full mr-1.5 ${
-          status === 'Completed' ? 'bg-emerald-400' : 
-          status === 'In Progress' ? 'bg-amber-400' : 'bg-slate-400'
-        }`}></div>
-        {status}
-      </span>
+      <div className="flex min-h-screen bg-slate-50 items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600 mx-auto"></div>
+          <p className="mt-4 text-slate-600">Loading students...</p>
+        </div>
+      </div>
     );
-  };
+  }
+
+  // Error state
+  if (error) {
+    return (
+      <div className="flex min-h-screen bg-slate-50 items-center justify-center">
+        <div className="text-center">
+          <div className="text-red-500 text-lg font-semibold">Error</div>
+          <p className="mt-2 text-slate-600">{error}</p>
+          <button 
+            className="mt-4 px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700"
+            onClick={() => window.location.reload()}
+          >
+            Try Again
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="flex min-h-screen bg-slate-50">
@@ -194,7 +183,7 @@ const AdminSection = () => {
               <p className="text-sm font-semibold text-slate-900">Admin User</p>
               <p className="text-xs text-slate-500">admin@aisaathi.com</p>
             </div>
-          </div>
+            </div>
         </div>
       </div>
 
@@ -233,7 +222,7 @@ const AdminSection = () => {
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
               <div>
                 <h1 className="text-xl sm:text-2xl font-bold text-slate-900">Student Management</h1>
-                <p className="text-slate-600 mt-1 text-sm sm:text-base">Manage student profiles and track resume progress</p>
+                <p className="text-slate-600 mt-1 text-sm sm:text-base">Manage student profiles and contact information</p>
               </div>
               <div className="text-left sm:text-right">
                 <p className="text-sm font-medium text-slate-900">{filteredStudents.length} Total Students</p>
@@ -243,38 +232,28 @@ const AdminSection = () => {
           </div>
 
           {/* Search and Actions */}
-          <div className="mb-4 bg-white rounded-2xl shadow-sm border border-slate-200 p-4 sm:p-6">
-            <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
-              <div className="relative flex-1 max-w-full sm:max-w-md">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <svg className="h-5 w-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                  </svg>
-                </div>
-                <input
-                  type="text"
-                  placeholder="Search students..."
-                  className="block w-full pl-10 pr-3 py-3 border border-slate-300 rounded-xl bg-white placeholder-slate-500 focus:outline-none focus:placeholder-slate-400 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-sm"
-                  value={searchTerm}
-                  onChange={(e) => {
-                    setSearchTerm(e.target.value);
-                    setCurrentPage(1);
-                  }}
-                />
+          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+            <div className="relative flex-1 max-w-full sm:max-w-md">
+              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <svg className="h-5 w-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                </svg>
               </div>
-              <div className="flex flex-col sm:flex-row sm:items-center gap-3">
-                <button className="inline-flex items-center px-4 py-2.5 border border-transparent rounded-xl text-sm font-medium text-white bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 shadow-lg transition-all w-full sm:w-auto justify-center">
-                  <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
-                  </svg>
-                  Add Student
-                </button>
-              </div>
+              <input
+                type="text"
+                placeholder="Search students..."
+                className="block w-full pl-10 pr-3 py-3 border border-slate-300 rounded-xl bg-white placeholder-slate-500 focus:outline-none focus:placeholder-slate-400 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-sm"
+                value={searchTerm}
+                onChange={(e) => {
+                  setSearchTerm(e.target.value);
+                  setCurrentPage(1);
+                }}
+              />
             </div>
           </div>
 
           {/* Students Table */}
-          <div className="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+          <div className="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden mt-6">
             <div className="hidden md:block overflow-x-auto">
               <table className="min-w-full divide-y divide-slate-200">
                 <thead className="bg-slate-50">
@@ -283,13 +262,10 @@ const AdminSection = () => {
                       Student
                     </th>
                     <th scope="col" className="px-6 py-4 text-left text-xs font-semibold text-slate-900 uppercase tracking-wider">
-                      Contact
+                      Mobile Number
                     </th>
                     <th scope="col" className="px-6 py-4 text-left text-xs font-semibold text-slate-900 uppercase tracking-wider">
-                      Status
-                    </th>
-                    <th scope="col" className="px-6 py-4 text-left text-xs font-semibold text-slate-900 uppercase tracking-wider">
-                      Last Updated
+                      Email
                     </th>
                     <th scope="col" className="px-6 py-4 text-left text-xs font-semibold text-slate-900 uppercase tracking-wider">
                       Actions
@@ -304,28 +280,20 @@ const AdminSection = () => {
                           <div className="flex-shrink-0 h-11 w-11">
                             <div className="h-11 w-11 rounded-full bg-gradient-to-br from-indigo-400 to-purple-500 flex items-center justify-center shadow-md">
                               <span className="text-white font-semibold text-sm">
-                                {student.name.split(' ').map(n => n[0]).join('')}
+                                {student.firstName[0]}{student.lastName[0]}
                               </span>
                             </div>
                           </div>
                           <div className="ml-4">
-                            <div className="text-sm font-semibold text-slate-900">{student.name}</div>
-                            <div className="text-sm text-slate-500">ID: #{student.id.toString().padStart(4, '0')}</div>
+                            <div className="text-sm font-semibold text-slate-900">{student.firstName} {student.lastName}</div>
                           </div>
                         </div>
                       </td>
                       <td className="px-6 py-5 whitespace-nowrap">
-                        <div className="space-y-1">
-                          <div className="text-sm text-slate-900 font-medium">{student.email}</div>
-                          <div className="text-sm text-slate-600">{student.phone}</div>
-                        </div>
+                        <div className="text-sm text-slate-900 font-medium">{student.phone || 'N/A'}</div>
                       </td>
                       <td className="px-6 py-5 whitespace-nowrap">
-                        {getStatusBadge(student.status)}
-                      </td>
-                      <td className="px-6 py-5 whitespace-nowrap">
-                        <div className="text-sm text-slate-900 font-medium">{student.lastUpdated}</div>
-                        <div className="text-xs text-slate-500">3 days ago</div>
+                        <div className="text-sm text-slate-900 font-medium">{student.email}</div>
                       </td>
                       <td className="px-6 py-5 whitespace-nowrap text-sm font-medium">
                         <div className="flex items-center space-x-2">
@@ -337,11 +305,11 @@ const AdminSection = () => {
                           </button>
                           <button className="inline-flex items-center p-2 text-slate-400 hover:text-emerald-600 hover:bg-emerald-50 rounded-lg transition-colors">
                             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 极速3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
                             </svg>
                           </button>
                           <button className="inline-flex items-center p-2 text-slate-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors">
-                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="极速0 0 24 24">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
                             </svg>
                           </button>
@@ -362,36 +330,30 @@ const AdminSection = () => {
                       <div className="flex-shrink-0 h-10 w-10">
                         <div className="h-10 w-10 rounded-full bg-gradient-to-br from-indigo-400 to-purple-500 flex items-center justify-center shadow-md">
                           <span className="text-white font-semibold text-sm">
-                            {student.name.split(' ').map(n => n[0]).join('')}
+                            {student.firstName[0]}{student.lastName[0]}
                           </span>
                         </div>
                       </div>
                       <div className="ml-3">
-                        <div className="text-sm font-semibold text-slate-900">{student.name}</div>
-                        <div className="text-xs text-slate-500">ID: #{student.id.toString().padStart(4, '0')}</div>
+                        <div className="text-sm font-semibold text-slate-900">{student.firstName} {student.lastName}</div>
+                        <div className="text-sm text-slate-600">{student.email}</div>
+                        <div className="text-sm text-slate-600">{student.phone || 'N/A'}</div>
                       </div>
                     </div>
-                    {getStatusBadge(student.status)}
                   </div>
-                  <div className="mt-3 space-y-2">
-                    <div className="text-sm text-slate-900 font-medium">{student.email}</div>
-                    <div className="text-sm text-slate-600">{student.phone}</div>
-                    <div className="text-sm text-slate-900 font-medium">{student.lastUpdated}</div>
-                    <div className="text-xs text-slate-500">3 days ago</div>
-                  </div>
-                  <div className="mt-3 flex items-center space-x-2">
+                  <div className="mt-3 flex justify-end space-x-2">
                     <button className="inline-flex items-center p-2 text-slate-400 hover:text-indigo-600 hover:bg-indigo-50 rounded-lg transition-colors">
                       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 极速2a3 3 0 11-6 0 3 3 0 016 0z"></path>
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"></path>
                       </svg>
                     </button>
                     <button className="inline-flex items-center p-2 text-slate-400 hover:text-emerald-600 hover:bg-emerald-50 rounded-lg transition-colors">
                       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m极速0 0l-4-4m4 4V4"></path>
                       </svg>
                     </button>
-                    <button className="inline-flex items-center p-2 text-slate-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors">
+                    <button className="inline-flex items极速-center p-2 text-slate-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors">
                       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
                       </svg>
@@ -404,7 +366,7 @@ const AdminSection = () => {
 
           {/* Pagination */}
           <div className="mt-6 flex flex-col sm:flex-row items-center justify-between bg-white px-4 sm:px-6 py-4 rounded-2xl shadow-sm border border-slate-200">
-            <div className="text-sm text-slate-700 mb-4 sm:mb-0">
+            <div className="text-sm text-slate-极速00 mb-4 sm:mb-0">
               Showing <span className="font-semibold text-slate-900">{startIndex + 1}</span> to{' '}
               <span className="font-semibold text-slate-900">{Math.min(endIndex, filteredStudents.length)}</span> of{' '}
               <span className="font-semibold text-slate-900">{filteredStudents.length}</span> students
@@ -416,7 +378,7 @@ const AdminSection = () => {
                 className="inline-flex items-center px-4 py-2 border border-slate-300 rounded-xl text-sm font-medium text-slate-700 bg-white hover:bg-slate-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors w-full sm:w-auto justify-center"
               >
                 <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"></path>
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 极速7-7"></path>
                 </svg>
                 Previous
               </button>

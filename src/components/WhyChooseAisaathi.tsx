@@ -14,43 +14,43 @@ export default function WhyChooseAiSaathi() {
       name: 'Beautiful Templates',
       description: 'Professionally designed templates to make your resume stand out.',
       icon: '📄',
-      gradient: 'linear-gradient(135deg, #f3f0ff 0%, #e6e0ff 100%)',
-      color: '#7e69b3'
+      gradient: 'linear-gradient(135deg, #fff3ec 0%, #ffe8d9 100%)',
+      color: '#ff7b4f'
     },
     {
       name: 'Secure & Private',
       description: 'Your data is protected with top-tier encryption and privacy measures.',
       icon: '🔒',
-      gradient: 'linear-gradient(135deg, #f5f0ff 0%, #e8e0ff 100%)',
-      color: '#8a75c1'
+      gradient: 'linear-gradient(135deg, #e6f4ff 0%, #c9e9ff 100%)',
+      color: '#0086d5'
     },
     {
       name: '24/7 Support',
       description: 'Round-the-clock assistance to help you craft the perfect resume.',
       icon: '🛟',
-      gradient: 'linear-gradient(135deg, #f7f2ff 0%, #ebe0ff 100%)',
-      color: '#9682cf'
+      gradient: 'linear-gradient(135deg, #e6f7ee 0%, #cef2e2 100%)',
+      color: '#00a86b'
     },
     {
       name: 'Lightning Fast',
       description: 'Create and download your resume in minutes with our streamlined process.',
       icon: '⚡',
-      gradient: 'linear-gradient(135deg, #f9f4ff 0%, #eee0ff 100%)',
-      color: '#a28edd'
+      gradient: 'linear-gradient(135deg, #fef7e6 0%, #fdefcc 100%)',
+      color: '#ffb020'
     },
     {
       name: 'ATS-Friendly Templates',
       description: 'Templates optimized to pass applicant tracking systems with ease.',
       icon: '✅',
-      gradient: 'linear-gradient(135deg, #fbf6ff 0%, #f1e0ff 100%)',
-      color: '#ae9beb'
+      gradient: 'linear-gradient(135deg, #f2e6ff 0%, #e5ccff 100%)',
+      color: '#8a2be2'
     },
     {
       name: 'AI-Powered Optimization',
       description: 'Smart AI tailors your resume for maximum impact and relevance.',
       icon: '✨',
-      gradient: 'linear-gradient(135deg, #fdf8ff 0%, #f4e0ff 100%)',
-      color: '#baa9f9'
+      gradient: 'linear-gradient(135deg, #ffe6e6 0%, #ffcccc 100%)',
+      color: '#ff4d4d'
     },
   ];
 
