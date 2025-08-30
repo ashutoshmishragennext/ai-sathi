@@ -30,7 +30,7 @@ export default function Hero() {
           <div className="flex justify-center space-x-4">
             <Link
               href="/resumebuilder"
-              className="text-sm px-6 py-3 rounded-md bg-gradient-to-r from-blue-700 to-cyan-500 text-white hover:from-blue-600 hover:to-cyan-600 hover:scale-105 hover:shadow-md transition-all duration-200"
+              className="text-sm px-6 py-3 rounded-md bg-gradient-to-r from-purple-500 to-purple-700 text-white hover:from-purple-700 hover:to-purple-900 hover:scale-105 hover:shadow-md transition-all duration-200"
             >
               Start Building Now
             </Link>
