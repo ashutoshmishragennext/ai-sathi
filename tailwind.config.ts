@@ -10,7 +10,23 @@ export default withUt({
   ],
   theme: {
     extend: {
+      spacing: {
+         '50': '12.5rem', // 200px for sidebar width
+        '60': '15rem', 
+      },
       colors: {
+         purple: {
+          50: '#faf5ff',
+          100: '#f3e8ff',
+          200: '#e9d5ff',
+          300: '#d8b4fe',
+          400: '#c084fc',
+          500: '#a855f7',
+          600: '#9333ea',
+          700: '#7c3aed',
+          800: '#6b21a8',
+          900: '#581c87',
+        },
         // Your custom direct hex colors
         white: '#FEFEFE',
         'light-gray': '#E7E9F0',

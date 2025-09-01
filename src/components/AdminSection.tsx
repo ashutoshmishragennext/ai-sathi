@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { useState, useEffect } from 'react';
 
 interface Student {
@@ -7,13 +8,93 @@ interface Student {
   email: string;
   phone?: string;
 }
+=======
+// 
+
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { useState } from 'react';
+>>>>>>> b38ced26c5fd7e7eceb708f135c66111c8cbe934
+
+// Add type definitions
+type StudentStatus = 'Completed' | 'In Progress' | 'Not Started';
+
+interface Student {
+  id: number;
+  name: string;
+  email: string;
+  phone: string;
+  status: StudentStatus;
+  lastUpdated: string;
+}
 
 const AdminSection = () => {
   const [activeTab, setActiveTab] = useState('students');
   const [sidebarOpen, setSidebarOpen] = useState(false);
+<<<<<<< HEAD
   const [students, setStudents] = useState<Student[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+=======
+  const [students, setStudents] = useState<Student[]>([
+    {
+      id: 1,
+      name: 'John Smith',
+      email: 'john.smith@example.com',
+      phone: '+1 (555) 123-4567',
+      status: 'Completed',
+      lastUpdated: '2023-10-15',
+    },
+    {
+      id: 2,
+      name: 'Emma Johnson',
+      email: 'emma.j@example.com',
+      phone: '+1 (555) 987-6543',
+      status: 'In Progress',
+      lastUpdated: '2023-10-14',
+    },
+    {
+      id: 3,
+      name: 'Michael Brown',
+      email: 'm.brown@example.com',
+      phone: '+1 (444) 555-0123',
+      status: 'Not Started',
+      lastUpdated: '2023-10-10',
+    },
+    {
+      id: 4,
+      name: 'Sarah Davis',
+      email: 'sarah.d@example.com',
+      phone: '+1 (444) 567-8901',
+      status: 'Completed',
+      lastUpdated: '2023-10-12',
+    },
+    {
+      id: 5,
+      name: 'David Wilson',
+      email: 'd.wilson@example.com',
+      phone: '+1 (333) 888-4567',
+      status: 'In Progress',
+      lastUpdated: '2023-10-13',
+    },
+    {
+      id: 6,
+      name: 'Jennifer Lee',
+      email: 'j.lee@example.com',
+      phone: '+1 (222) 777-1234',
+      status: 'Completed',
+      lastUpdated: '2023-10-11',
+    },
+    {
+      id: 7,
+      name: 'Robert Taylor',
+      email: 'r.taylor@example.com',
+      phone: '+1 (222) 555-9876',
+      status: 'Not Started',
+      lastUpdated: '2023-10-09',
+    },
+  ]);
+>>>>>>> b38ced26c5fd7e7eceb708f135c66111c8cbe934
 
   const [searchTerm, setSearchTerm] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
@@ -64,8 +145,18 @@ const AdminSection = () => {
     setCurrentPage(prev => Math.min(prev + 1, totalPages));
   };
 
+<<<<<<< HEAD
   // Loading state
   if (loading) {
+=======
+  const getStatusBadge = (status: StudentStatus) => {
+    const statusStyles: Record<StudentStatus, string> = {
+      'Completed': 'bg-emerald-50 text-emerald-700 border-emerald-200',
+      'In Progress': 'bg-amber-50 text-amber-700 border-amber-200',
+      'Not Started': 'bg-slate-50 text-slate-700 border-slate-200'
+    };
+    
+>>>>>>> b38ced26c5fd7e7eceb708f135c66111c8cbe934
     return (
       <div className="flex min-h-screen bg-slate-50 items-center justify-center">
         <div className="text-center">
