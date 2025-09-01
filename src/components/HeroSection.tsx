@@ -11,26 +11,25 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="bg-purple-50">
+    <section className="bg-purple-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
         <div className="text-center">
           {/* Headline */}
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            Create Your Perfect Resume with{' '}<br></br>
-            <span className={`text-purple-600 inline-block ${isVisible ? 'animate-pulse-slow' : ''}`}>
-              AiSaathi
+          <h1 className="text-4xl md:text-5xl font-bold text-gray-500 mb-4">
+             <span className={`text-purple-900 inline-block ${isVisible ? 'animate-pulse-slow' : ''}`}>
+             AI Saathi -
             </span>
+           <span className="text-purple-600">Your AI Assistant</span> {' '}
           </h1>
           {/* Subheadline */}
-          <p className="text-lg md:text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
-            Build professional, ATS-friendly resumes in minutes with AI-powered
-            customization and expert templates.
+          <p className="text-base md:text-base text-gray-600 mb-8 max-w-2xl mx-auto">
+            From building powerful CVs to guiding your career path, preparing for interviews, and mastering English—your trusted AI Assistant is here to support every step of your growth journey.
           </p>
           {/* Call-to-Action Buttons */}
           <div className="flex justify-center space-x-4">
             <Link
-              href="/get-started"
-              className="text-sm px-6 py-3 rounded-md bg-gradient-to-r from-purple-700 to-purple-500 text-white hover:from-purple-600 hover:to-purple-400 hover:scale-105 hover:shadow-md transition-all duration-200"
+              href="/resumebuilder"
+              className="text-sm px-6 py-3 rounded-md bg-gradient-to-r from-purple-500 to-purple-700 text-white hover:from-purple-700 hover:to-purple-900 hover:scale-105 hover:shadow-md transition-all duration-200"
             >
               Start Building Now
             </Link>

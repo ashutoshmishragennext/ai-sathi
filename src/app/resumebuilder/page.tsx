@@ -1,8 +1,8 @@
 import FirstPage from '@/components/firstpage'
 import React from 'react'
 
-export default function page () {
+export default function page() {
   return (
-    <div><FirstPage /></div>
+    <div><FirstPage  /></div>
   )
 }
