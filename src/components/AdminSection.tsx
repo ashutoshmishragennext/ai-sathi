@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import { useState, useEffect } from 'react';
 
 interface Student {
@@ -8,94 +7,15 @@ interface Student {
   email: string;
   phone?: string;
 }
-=======
-// 
 
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import { useState } from 'react';
->>>>>>> b38ced26c5fd7e7eceb708f135c66111c8cbe934
-
-// Add type definitions
 type StudentStatus = 'Completed' | 'In Progress' | 'Not Started';
-
-interface Student {
-  id: number;
-  name: string;
-  email: string;
-  phone: string;
-  status: StudentStatus;
-  lastUpdated: string;
-}
 
 const AdminSection = () => {
   const [activeTab, setActiveTab] = useState('students');
   const [sidebarOpen, setSidebarOpen] = useState(false);
-<<<<<<< HEAD
   const [students, setStudents] = useState<Student[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-=======
-  const [students, setStudents] = useState<Student[]>([
-    {
-      id: 1,
-      name: 'John Smith',
-      email: 'john.smith@example.com',
-      phone: '+1 (555) 123-4567',
-      status: 'Completed',
-      lastUpdated: '2023-10-15',
-    },
-    {
-      id: 2,
-      name: 'Emma Johnson',
-      email: 'emma.j@example.com',
-      phone: '+1 (555) 987-6543',
-      status: 'In Progress',
-      lastUpdated: '2023-10-14',
-    },
-    {
-      id: 3,
-      name: 'Michael Brown',
-      email: 'm.brown@example.com',
-      phone: '+1 (444) 555-0123',
-      status: 'Not Started',
-      lastUpdated: '2023-10-10',
-    },
-    {
-      id: 4,
-      name: 'Sarah Davis',
-      email: 'sarah.d@example.com',
-      phone: '+1 (444) 567-8901',
-      status: 'Completed',
-      lastUpdated: '2023-10-12',
-    },
-    {
-      id: 5,
-      name: 'David Wilson',
-      email: 'd.wilson@example.com',
-      phone: '+1 (333) 888-4567',
-      status: 'In Progress',
-      lastUpdated: '2023-10-13',
-    },
-    {
-      id: 6,
-      name: 'Jennifer Lee',
-      email: 'j.lee@example.com',
-      phone: '+1 (222) 777-1234',
-      status: 'Completed',
-      lastUpdated: '2023-10-11',
-    },
-    {
-      id: 7,
-      name: 'Robert Taylor',
-      email: 'r.taylor@example.com',
-      phone: '+1 (222) 555-9876',
-      status: 'Not Started',
-      lastUpdated: '2023-10-09',
-    },
-  ]);
->>>>>>> b38ced26c5fd7e7eceb708f135c66111c8cbe934
-
   const [searchTerm, setSearchTerm] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 5;
@@ -105,9 +25,10 @@ const AdminSection = () => {
     const fetchStudents = async () => {
       try {
         setLoading(true);
+        setError(null);
         const response = await fetch('/api/students');
         if (!response.ok) {
-          throw new Error('Failed to fetch students');
+          throw new Error(`Failed to fetch students: ${response.status} ${response.statusText}`);
         }
         const data = await response.json();
         setStudents(data);
@@ -145,10 +66,6 @@ const AdminSection = () => {
     setCurrentPage(prev => Math.min(prev + 1, totalPages));
   };
 
-<<<<<<< HEAD
-  // Loading state
-  if (loading) {
-=======
   const getStatusBadge = (status: StudentStatus) => {
     const statusStyles: Record<StudentStatus, string> = {
       'Completed': 'bg-emerald-50 text-emerald-700 border-emerald-200',
@@ -156,7 +73,15 @@ const AdminSection = () => {
       'Not Started': 'bg-slate-50 text-slate-700 border-slate-200'
     };
     
->>>>>>> b38ced26c5fd7e7eceb708f135c66111c8cbe934
+    return (
+      <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium border ${statusStyles[status]}`}>
+        {status}
+      </span>
+    );
+  };
+
+  // Loading state
+  if (loading) {
     return (
       <div className="flex min-h-screen bg-slate-50 items-center justify-center">
         <div className="text-center">
@@ -274,7 +199,7 @@ const AdminSection = () => {
               <p className="text-sm font-semibold text-slate-900">Admin User</p>
               <p className="text-xs text-slate-500">admin@aisaathi.com</p>
             </div>
-            </div>
+          </div>
         </div>
       </div>
 
@@ -345,146 +270,162 @@ const AdminSection = () => {
 
           {/* Students Table */}
           <div className="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden mt-6">
-            <div className="hidden md:block overflow-x-auto">
-              <table className="min-w-full divide-y divide-slate-200">
-                <thead className="bg-slate-50">
-                  <tr>
-                    <th scope="col" className="px-6 py-4 text-left text-xs font-semibold text-slate-900 uppercase tracking-wider">
-                      Student
-                    </th>
-                    <th scope="col" className="px-6 py-4 text-left text-xs font-semibold text-slate-900 uppercase tracking-wider">
-                      Mobile Number
-                    </th>
-                    <th scope="col" className="px-6 py-4 text-left text-xs font-semibold text-slate-900 uppercase tracking-wider">
-                      Email
-                    </th>
-                    <th scope="col" className="px-6 py-4 text-left text-xs font-semibold text-slate-900 uppercase tracking-wider">
-                      Actions
-                    </th>
-                  </tr>
-                </thead>
-                <tbody className="bg-white divide-y divide-slate-100">
+            {filteredStudents.length === 0 ? (
+              <div className="text-center py-12">
+                <svg className="mx-auto h-12 w-12 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m3 5.197V9a3 3 0 00-6 0v2.5l-2-1V9a5 5 0 1110 0z"></path>
+                </svg>
+                <h3 className="mt-2 text-sm font-medium text-slate-900">No students found</h3>
+                <p className="mt-1 text-sm text-slate-500">
+                  {searchTerm ? 'Try adjusting your search terms.' : 'No students have been added yet.'}
+                </p>
+              </div>
+            ) : (
+              <>
+                <div className="hidden md:block overflow-x-auto">
+                  <table className="min-w-full divide-y divide-slate-200">
+                    <thead className="bg-slate-50">
+                      <tr>
+                        <th scope="col" className="px-6 py-4 text-left text-xs font-semibold text-slate-900 uppercase tracking-wider">
+                          Student
+                        </th>
+                        <th scope="col" className="px-6 py-4 text-left text-xs font-semibold text-slate-900 uppercase tracking-wider">
+                          Mobile Number
+                        </th>
+                        <th scope="col" className="px-6 py-4 text-left text-xs font-semibold text-slate-900 uppercase tracking-wider">
+                          Email
+                        </th>
+                        <th scope="col" className="px-6 py-4 text-left text-xs font-semibold text-slate-900 uppercase tracking-wider">
+                          Actions
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody className="bg-white divide-y divide-slate-100">
+                      {currentStudents.map((student) => (
+                        <tr key={student.id} className="hover:bg-slate-50 transition-colors duration-150">
+                          <td className="px-6 py-5 whitespace-nowrap">
+                            <div className="flex items-center">
+                              <div className="flex-shrink-0 h-11 w-11">
+                                <div className="h-11 w-11 rounded-full bg-gradient-to-br from-indigo-400 to-purple-500 flex items-center justify-center shadow-md">
+                                  <span className="text-white font-semibold text-sm">
+                                    {student.firstName[0]}{student.lastName[0]}
+                                  </span>
+                                </div>
+                              </div>
+                              <div className="ml-4">
+                                <div className="text-sm font-semibold text-slate-900">{student.firstName} {student.lastName}</div>
+                              </div>
+                            </div>
+                          </td>
+                          <td className="px-6 py-5 whitespace-nowrap">
+                            <div className="text-sm text-slate-900 font-medium">{student.phone || 'N/A'}</div>
+                          </td>
+                          <td className="px-6 py-5 whitespace-nowrap">
+                            <div className="text-sm text-slate-900 font-medium">{student.email}</div>
+                          </td>
+                          <td className="px-6 py-5 whitespace-nowrap text-sm font-medium">
+                            <div className="flex items-center space-x-2">
+                              <button className="inline-flex items-center p-2 text-slate-400 hover:text-indigo-600 hover:bg-indigo-50 rounded-lg transition-colors">
+                                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"></path>
+                                </svg>
+                              </button>
+                              <button className="inline-flex items-center p-2 text-slate-400 hover:text-emerald-600 hover:bg-emerald-50 rounded-lg transition-colors">
+                                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+                                </svg>
+                              </button>
+                              <button className="inline-flex items-center p-2 text-slate-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors">
+                                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                                </svg>
+                              </button>
+                            </div>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+
+                {/* Mobile Card Layout */}
+                <div className="md:hidden divide-y divide-slate-100">
                   {currentStudents.map((student) => (
-                    <tr key={student.id} className="hover:bg-slate-50 transition-colors duration-150">
-                      <td className="px-6 py-5 whitespace-nowrap">
+                    <div key={student.id} className="p-4 bg-white hover:bg-slate-50 transition-colors duration-150">
+                      <div className="flex items-center justify-between">
                         <div className="flex items-center">
-                          <div className="flex-shrink-0 h-11 w-11">
-                            <div className="h-11 w-11 rounded-full bg-gradient-to-br from-indigo-400 to-purple-500 flex items-center justify-center shadow-md">
+                          <div className="flex-shrink-0 h-10 w-10">
+                            <div className="h-10 w-10 rounded-full bg-gradient-to-br from-indigo-400 to-purple-500 flex items-center justify-center shadow-md">
                               <span className="text-white font-semibold text-sm">
                                 {student.firstName[0]}{student.lastName[0]}
                               </span>
                             </div>
                           </div>
-                          <div className="ml-4">
+                          <div className="ml-3">
                             <div className="text-sm font-semibold text-slate-900">{student.firstName} {student.lastName}</div>
+                            <div className="text-sm text-slate-600">{student.email}</div>
+                            <div className="text-sm text-slate-600">{student.phone || 'N/A'}</div>
                           </div>
                         </div>
-                      </td>
-                      <td className="px-6 py-5 whitespace-nowrap">
-                        <div className="text-sm text-slate-900 font-medium">{student.phone || 'N/A'}</div>
-                      </td>
-                      <td className="px-6 py-5 whitespace-nowrap">
-                        <div className="text-sm text-slate-900 font-medium">{student.email}</div>
-                      </td>
-                      <td className="px-6 py-5 whitespace-nowrap text-sm font-medium">
-                        <div className="flex items-center space-x-2">
-                          <button className="inline-flex items-center p-2 text-slate-400 hover:text-indigo-600 hover:bg-indigo-50 rounded-lg transition-colors">
-                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"></path>
-                            </svg>
-                          </button>
-                          <button className="inline-flex items-center p-2 text-slate-400 hover:text-emerald-600 hover:bg-emerald-50 rounded-lg transition-colors">
-                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 极速3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
-                            </svg>
-                          </button>
-                          <button className="inline-flex items-center p-2 text-slate-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors">
-                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="极速0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
-                            </svg>
-                          </button>
-                        </div>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-
-            {/* Mobile Card Layout */}
-            <div className="md:hidden divide-y divide-slate-100">
-              {currentStudents.map((student) => (
-                <div key={student.id} className="p-4 bg-white hover:bg-slate-50 transition-colors duration-150">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center">
-                      <div className="flex-shrink-0 h-10 w-10">
-                        <div className="h-10 w-10 rounded-full bg-gradient-to-br from-indigo-400 to-purple-500 flex items-center justify-center shadow-md">
-                          <span className="text-white font-semibold text-sm">
-                            {student.firstName[0]}{student.lastName[0]}
-                          </span>
-                        </div>
                       </div>
-                      <div className="ml-3">
-                        <div className="text-sm font-semibold text-slate-900">{student.firstName} {student.lastName}</div>
-                        <div className="text-sm text-slate-600">{student.email}</div>
-                        <div className="text-sm text-slate-600">{student.phone || 'N/A'}</div>
+                      <div className="mt-3 flex justify-end space-x-2">
+                        <button className="inline-flex items-center p-2 text-slate-400 hover:text-indigo-600 hover:bg-indigo-50 rounded-lg transition-colors">
+                          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"></path>
+                          </svg>
+                        </button>
+                        <button className="inline-flex items-center p-2 text-slate-400 hover:text-emerald-600 hover:bg-emerald-50 rounded-lg transition-colors">
+                          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+                          </svg>
+                        </button>
+                        <button className="inline-flex items-center p-2 text-slate-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors">
+                          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                          </svg>
+                        </button>
                       </div>
                     </div>
-                  </div>
-                  <div className="mt-3 flex justify-end space-x-2">
-                    <button className="inline-flex items-center p-2 text-slate-400 hover:text-indigo-600 hover:bg-indigo-50 rounded-lg transition-colors">
-                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 极速2a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"></path>
-                      </svg>
-                    </button>
-                    <button className="inline-flex items-center p-2 text-slate-400 hover:text-emerald-600 hover:bg-emerald-50 rounded-lg transition-colors">
-                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m极速0 0l-4-4m4 4V4"></path>
-                      </svg>
-                    </button>
-                    <button className="inline-flex items极速-center p-2 text-slate-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors">
-                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
-                      </svg>
-                    </button>
-                  </div>
+                  ))}
                 </div>
-              ))}
-            </div>
+              </>
+            )}
           </div>
 
           {/* Pagination */}
-          <div className="mt-6 flex flex-col sm:flex-row items-center justify-between bg-white px-4 sm:px-6 py-4 rounded-2xl shadow-sm border border-slate-200">
-            <div className="text-sm text-slate-极速00 mb-4 sm:mb-0">
-              Showing <span className="font-semibold text-slate-900">{startIndex + 1}</span> to{' '}
-              <span className="font-semibold text-slate-900">{Math.min(endIndex, filteredStudents.length)}</span> of{' '}
-              <span className="font-semibold text-slate-900">{filteredStudents.length}</span> students
+          {filteredStudents.length > 0 && (
+            <div className="mt-6 flex flex-col sm:flex-row items-center justify-between bg-white px-4 sm:px-6 py-4 rounded-2xl shadow-sm border border-slate-200">
+              <div className="text-sm text-slate-700 mb-4 sm:mb-0">
+                Showing <span className="font-semibold text-slate-900">{startIndex + 1}</span> to{' '}
+                <span className="font-semibold text-slate-900">{Math.min(endIndex, filteredStudents.length)}</span> of{' '}
+                <span className="font-semibold text-slate-900">{filteredStudents.length}</span> students
+              </div>
+              <div className="flex items-center space-x-2">
+                <button 
+                  onClick={goToPrevious}
+                  disabled={currentPage === 1}
+                  className="inline-flex items-center px-4 py-2 border border-slate-300 rounded-xl text-sm font-medium text-slate-700 bg-white hover:bg-slate-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors w-full sm:w-auto justify-center"
+                >
+                  <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"></path>
+                  </svg>
+                  Previous
+                </button>
+                <button 
+                  onClick={goToNext}
+                  disabled={currentPage === totalPages}
+                  className="inline-flex items-center px-4 py-2 border border-transparent rounded-xl text-sm font-medium text-white bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed transition-all w-full sm:w-auto justify-center"
+                >
+                  Next
+                  <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path>
+                  </svg>
+                </button>
+              </div>
             </div>
-            <div className="flex items-center space-x-2">
-              <button 
-                onClick={goToPrevious}
-                disabled={currentPage === 1}
-                className="inline-flex items-center px-4 py-2 border border-slate-300 rounded-xl text-sm font-medium text-slate-700 bg-white hover:bg-slate-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors w-full sm:w-auto justify-center"
-              >
-                <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 极速7-7"></path>
-                </svg>
-                Previous
-              </button>
-              <button 
-                onClick={goToNext}
-                disabled={currentPage === totalPages}
-                className="inline-flex items-center px-4 py-2 border border-transparent rounded-xl text-sm font-medium text-white bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed transition-all w-full sm:w-auto justify-center"
-              >
-                Next
-                <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path>
-                </svg>
-              </button>
-            </div>
-          </div>
+          )}
         </div>
       </div>
     </div>
