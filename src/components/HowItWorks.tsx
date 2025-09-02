@@ -35,7 +35,7 @@ export default function HowItWorks() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-10">
           <h2 className="text-2xl md:text-3xl font-bold text-gray-900 relative inline-block">
-            How <span className="text-purple-600">AiSaathi</span> Works
+            How <span className="text-purple-600">AI Saathi</span> Works
             <span className="absolute bottom-[-6px] left-0 w-full h-1 bg-gradient-to-r from-purple-500 to-purple-400 rounded-full"></span>
           </h2>
           <p className="text-base md:text-lg text-gray-600 mt-2 max-w-xl mx-auto">

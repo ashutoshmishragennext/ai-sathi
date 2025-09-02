@@ -59,7 +59,7 @@ export default function WhyChooseAiSaathi() {
       <div className="container">
         <div className="text-center mb-16">
           <h2 className="section-title">
-            Why Choose <span className="gradient-text">AiSaathi</span>?
+            Why Choose <span className="gradient-text">AI Saathi</span>?
           </h2>
           <p className="section-subtitle">
             Experience the next generation of resume building with our powerful AI-driven platform
