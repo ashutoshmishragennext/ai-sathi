@@ -36,6 +36,20 @@
       "when": 1756458327297,
       "tag": "0004_greedy_tiger_shark",
       "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1756792171987,
+      "tag": "0005_sturdy_big_bertha",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1756792688291,
+      "tag": "0006_premium_black_tarantula",
+      "breakpoints": true
     }
   ]
 }

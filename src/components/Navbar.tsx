@@ -54,13 +54,13 @@ export default function Navbar() {
           {/* Buttons */}
           <div className="hidden md:flex items-center space-x-4">
             <Link
-              href="/signin"
+              href="/auth/login"
               className="text-sm px-4 py-2 rounded-md bg-gradient-to-r from-purple-500 to-purple-600 text-white hover:from-purple-600 hover:to-purple-700 hover:scale-105 hover:shadow-md transition-all duration-200"
             >
               Sign In
             </Link>
             <Link
-              href="/get-started"
+              href="/auth/register"
               className="text-sm px-4 py-2 rounded-md border border-purple-600 text-purple-600 hover:bg-purple-50 hover:scale-105 hover:shadow-md transition-all duration-200"
             >
               Get Started
@@ -116,14 +116,14 @@ export default function Navbar() {
             ))}
             <div className="px-3 py-2 space-y-2">
               <Link
-                href="/signin"
+                href="/auth/login"
                 className="block text-sm px-4 py-2 rounded-md bg-gradient-to-r from-purple-500 to-purple-600 text-white hover:from-purple-600 hover:to-purple-700 hover:scale-105 hover:shadow-md text-center transition-all duration-200"
                 onClick={() => setIsOpen(false)}
               >
                 Sign In
               </Link>
               <Link
-                href="/get-started"
+                href="/auth/register"
                 className="block text-sm px-4 py-2 rounded-md border border-purple-600 text-purple-600 hover:bg-purple-50 hover:scale-105 hover:shadow-md text-center transition-all duration-200"
                 onClick={() => setIsOpen(false)}
               >

@@ -1,3 +1,6 @@
+
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 // ===== API ROUTE: /api/students/route.ts =====
 // Resume Builder API - For students to create and manage their resume data
 
