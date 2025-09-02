@@ -8,8 +8,9 @@ const Footer = () => {
           <div className="col-span-1 md:col-span-2">
             <h3 className="text-xl font-bold mb-4">AI Resume Builder</h3>
             <p className="text-gray-400 text-sm max-w-md">
-              The most advanced AI-powered resume builder that helps you create professional resumes that get you hired.
-            </p>
+At AI Saathi, we’re redefining career support with AI-powered Assistant built for your success. Our Career GPS helps you navigate the right path, the CV Generator creates job-winning resumes, and Mock Interview Preparation builds your confidence for the big day.
+<br></br><br></br>
+With English learning and personalized career guidance, AI Saathi is more than an assistant—it’s your partner in growth.            </p>
           </div>
           
           {/* Product links */}
