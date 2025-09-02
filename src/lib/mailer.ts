@@ -6,10 +6,11 @@ export const sendEmail = async (
   subject: string,
   content: string
 ) => {
+
   const transporter = nodemailer.createTransport({
     // service: "gmail", //
-    host: process.env.NODEMAILER_EMAIL_HOST,
-    port: Number(process.env.NODEMAILER_EMAIL_PORT),
+    host: process.env.NODEMAILER_HOST,
+    port: Number(process.env.NODEMAILER_PORT),
     secure: true, // true for 465, false for other ports
     auth: {
       user: process.env.NODEMAILER_EMAIL_USER,
@@ -20,7 +21,7 @@ export const sendEmail = async (
     },
   });
   const emailData = {
-    from: `${senderHeader} <${process.env.NODEMAILER_EMAIL_USERNAME}>`,
+    from: `${senderHeader} <${process.env.MAIL_USERNAME}>`,
     to: email,
     subject: subject,
     html: content,
