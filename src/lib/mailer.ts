@@ -8,19 +8,19 @@ export const sendEmail = async (
 ) => {
   const transporter = nodemailer.createTransport({
     // service: "gmail", //
-    host: process.env.MAIL_HOST,
-    port: Number(process.env.MAIL_PORT),
+    host: process.env.NODEMAILER_EMAIL_HOST,
+    port: Number(process.env.NODEMAILER_EMAIL_PORT),
     secure: true, // true for 465, false for other ports
     auth: {
-      user: process.env.MAIL_USERNAME,
-      pass: process.env.MAIL_PASSWORD,
+      user: process.env.NODEMAILER_EMAIL_USER,
+      pass: process.env.NODEMAILER_EMAIL_PASSWORD,
     },
     tls: {
       rejectUnauthorized: true,
     },
   });
   const emailData = {
-    from: `${senderHeader} <${process.env.MAIL_USERNAME}>`,
+    from: `${senderHeader} <${process.env.NODEMAILER_EMAIL_USERNAME}>`,
     to: email,
     subject: subject,
     html: content,
