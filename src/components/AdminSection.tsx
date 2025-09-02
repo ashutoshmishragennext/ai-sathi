@@ -6,8 +6,7 @@ import { useState, useEffect } from 'react';
 
 interface Student {
   id: string;
-  firstName: string;
-  lastName: string;
+  name: string;
   email: string;
   phone?: string;
 }
@@ -30,7 +29,7 @@ const AdminSection = () => {
       try {
         setLoading(true);
         setError(null);
-        const response = await fetch('/api/students');
+        const response = await fetch('/api/users');
         if (!response.ok) {
           throw new Error(`Failed to fetch students: ${response.status} ${response.statusText}`);
         }
@@ -51,7 +50,7 @@ const AdminSection = () => {
 
   const filteredStudents = students.filter(
     (student) =>
-      `${student.firstName} ${student.lastName}`.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      `${student.name}`.toLowerCase().includes(searchTerm.toLowerCase()) ||
       student.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
       (student.phone && student.phone.includes(searchTerm))
   );
@@ -93,7 +92,7 @@ const AdminSection = () => {
       <div className="flex min-h-screen bg-slate-50 items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600 mx-auto"></div>
-          <p className="mt-4 text-slate-600">Loading students...</p>
+          <p className="mt-4 text-slate-600">Loading Users...</p>
         </div>
       </div>
     );
@@ -160,7 +159,7 @@ const AdminSection = () => {
               <svg className="w-5 h-5 mr-3 md:mr-0 lg:mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m3 5.197V9a3 3 0 00-6 0v2.5l-2-1V9a5 5 0 1110 0z"></path>
               </svg>
-              <span className="md:hidden lg:block">Students</span>
+              <span className="md:hidden lg:block">Users</span>
             </button>
             
           </div>
@@ -235,7 +234,7 @@ const AdminSection = () => {
                 <p className="text-slate-600 mt-1 text-sm sm:text-base">Manage student profiles and contact information</p>
               </div>
               <div className="text-left sm:text-right">
-                <p className="text-sm font-medium text-slate-900">{filteredStudents.length} Total Students</p>
+                <p className="text-sm font-medium text-slate-900">{filteredStudents.length} Total Users</p>
                 <p className="text-xs text-slate-500">Updated today</p>
               </div>
             </div>
@@ -300,12 +299,13 @@ const AdminSection = () => {
                               <div className="flex-shrink-0 h-11 w-11">
                                 <div className="h-11 w-11 rounded-full bg-gradient-to-br from-indigo-400 to-purple-500 flex items-center justify-center shadow-md">
                                   <span className="text-white font-semibold text-sm">
-                                    {student.firstName[0]}{student.lastName[0]}
+                                    {student.name[0]}
+                                    {/* yha pe [0] ye lga tha */}
                                   </span>
                                 </div>
                               </div>
                               <div className="ml-4">
-                                <div className="text-sm font-semibold text-slate-900">{student.firstName} {student.lastName}</div>
+                                <div className="text-sm font-semibold text-slate-900">{student.name}</div>
                               </div>
                             </div>
                           </td>
@@ -330,12 +330,12 @@ const AdminSection = () => {
                           <div className="flex-shrink-0 h-10 w-10">
                             <div className="h-10 w-10 rounded-full bg-gradient-to-br from-indigo-400 to-purple-500 flex items-center justify-center shadow-md">
                               <span className="text-white font-semibold text-sm">
-                                {student.firstName[0]}{student.lastName[0]}
+                                {student.name[0]}
                               </span>
                             </div>
                           </div>
                           <div className="ml-3">
-                            <div className="text-sm font-semibold text-slate-900">{student.firstName} {student.lastName}</div>
+                            <div className="text-sm font-semibold text-slate-900">{student.name}</div>
                             <div className="text-sm text-slate-600">{student.email}</div>
                             <div className="text-sm text-slate-600">{student.phone || 'N/A'}</div>
                           </div>
@@ -372,7 +372,7 @@ const AdminSection = () => {
               <div className="text-sm text-slate-700 mb-4 sm:mb-0">
                 Showing <span className="font-semibold text-slate-900">{startIndex + 1}</span> to{' '}
                 <span className="font-semibold text-slate-900">{Math.min(endIndex, filteredStudents.length)}</span> of{' '}
-                <span className="font-semibold text-slate-900">{filteredStudents.length}</span> students
+                <span className="font-semibold text-slate-900">{filteredStudents.length}</span> users
               </div>
               <div className="flex items-center space-x-2">
                 <button 
