@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
-
 import { findUserByEmail } from "@/actions/user";
 import bcrypt from "bcryptjs";
 import { SignJWT } from "jose";
@@ -26,10 +25,17 @@ export async function POST(request: NextRequest) {
       return Response.json({ error: "Invalid credentials" }, { status: 401 });
     }
 
-    // Verify password
+    // Check if user has a password (OAuth users might not have one)
+    if (!user.password) {
+      return Response.json({ 
+        error: "This account uses social login. Please sign in with Google." 
+      }, { status: 401 });
+    }
+
+    // Verify password - now TypeScript knows user.password is not null
     const isPasswordValid = await bcrypt.compare(
       validatedData.password,
-      user.password
+      user.password  // TypeScript now knows this is string, not null
     );
 
     if (!isPasswordValid) {
@@ -43,10 +49,7 @@ export async function POST(request: NextRequest) {
       .sign(new TextEncoder().encode(process.env.JWT_SECRET));
 
     // Set cookie
-    (
-      await // Set cookie
-      cookies()
-    ).set("auth-token", token, {
+    (await cookies()).set("auth-token", token, {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
       sameSite: "strict",
