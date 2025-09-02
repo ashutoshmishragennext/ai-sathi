@@ -221,7 +221,7 @@ const FirstPage = ({ }) => {
         color: 'white',
         width: isMobile ? '50%' : 200,
         height: isMobile ? '100vh' : '100vh',
-        position: 'fixed',
+        position: 'absolute',
         top: 0,
         left: isMobile ? (isMobileMenuOpen ? 0 : '-100%') : 0,
         padding: isMobile ? '80px 24px 24px' : '32px 24px',

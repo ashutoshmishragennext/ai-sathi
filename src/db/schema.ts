@@ -11,8 +11,12 @@ import {
   text,
   timestamp,
   uniqueIndex,
-  uuid
+  uuid,
+  integer,
+  primaryKey,
 } from "drizzle-orm/pg-core";
+import type { AdapterAccount } from "next-auth/adapters";
+
 
 // ===== ENUMS =====
 export const UserRole = pgEnum("user_role", ["ADMIN", "USER"]);
@@ -24,11 +28,12 @@ export const UsersTable = pgTable(
   "users",
   {
     id: uuid("id").defaultRandom().primaryKey().notNull(),
-    name: text("name").notNull(),
+    name: text("name"),
     email: text("email").notNull(),
     emailVerified: timestamp("email_verified", { mode: "date" }),
-    password: text("password").notNull(),
+    password: text("password"),
     phone: text("phone"),
+    image: text("image"), // ADD: For OAuth profile pictures
     phoneVerified: timestamp("phone_verified", { mode: "date" }),
     role: UserRole("role").default("USER").notNull(),
     organizationId: uuid("organization_id"),
@@ -44,6 +49,62 @@ export const UsersTable = pgTable(
 
 export type User = InferModel<typeof UsersTable>;
 export type NewUser = InferModel<typeof UsersTable, "insert">;
+
+export const AccountsTable = pgTable(
+  "accounts",
+  {
+    userId: uuid("user_id")
+      .notNull()
+      .references(() => UsersTable.id, { onDelete: "cascade" }),
+    type: text("type").$type<AdapterAccount["type"]>().notNull(),
+    provider: text("provider").notNull(),
+    providerAccountId: text("provider_account_id").notNull(),
+    refresh_token: text("refresh_token"),
+    access_token: text("access_token"),
+    expires_at: integer("expires_at"),
+    token_type: text("token_type"),
+    scope: text("scope"),
+    id_token: text("id_token"),
+    session_state: text("session_state"),
+  },
+  (account) => [
+    primaryKey({
+      columns: [account.provider, account.providerAccountId],
+    }),
+    index("accounts_user_id_idx").on(account.userId),
+  ]
+);
+
+export const SessionsTable = pgTable(
+  "sessions",
+  {
+    sessionToken: text("session_token").notNull().primaryKey(),
+    userId: uuid("user_id")
+      .notNull()
+      .references(() => UsersTable.id, { onDelete: "cascade" }),
+    expires: timestamp("expires", { mode: "date" }).notNull(),
+  },
+  (session) => [
+    index("sessions_user_id_idx").on(session.userId),
+  ]
+);
+
+export const VerificationTokensTable = pgTable(
+  "verification_tokens",
+  {
+    identifier: text("identifier").notNull(),
+    token: text("token").notNull(),
+    expires: timestamp("expires", { mode: "date" }).notNull(),
+  },
+  (vt) => [
+    primaryKey({ columns: [vt.identifier, vt.token] }),
+  ]
+);
+
+// ===== TYPE EXPORTS FOR NEXTAUTH TABLES =====
+export type Account = InferModel<typeof AccountsTable>;
+export type Session = InferModel<typeof SessionsTable>;
+export type VerificationToken = InferModel<typeof VerificationTokensTable>;
 
 // ===== PROJECTS =====
 export const ProjectsTable = pgTable(
