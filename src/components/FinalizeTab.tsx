@@ -9,6 +9,8 @@ import EducationTab from "./EductionTab";
 import ExperienceTab from "./ExperienceTab";
 import SkillsTab from "./SkillsTab";
 import HeadingTab from "./headingTab";
+import { useCurrentUser } from "@/hooks/auth";
+import { useRouter } from "next/navigation";
 
 interface FormData {
   summary: any;
@@ -41,7 +43,8 @@ const FinalizeTab: React.FC<FinalizeTabProps> = ({
   const [editingSection, setEditingSection] = useState<string | null>(null);
   const templateRef = useRef<HTMLDivElement>(null);
   const [isMobile, setIsMobile] = useState(false);
-
+  const user = useCurrentUser();
+  const router = useRouter();
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 768);
     checkMobile();
@@ -52,6 +55,10 @@ const FinalizeTab: React.FC<FinalizeTabProps> = ({
   const handleCloseEdit = () => setEditingSection(null);
 
   const handleDownloadResume = () => {
+    if(!user) {
+      router.push("/auth/login");
+      return;
+    }
     if (templateRef.current) {
       const opt = {
         filename: "resume.pdf",
