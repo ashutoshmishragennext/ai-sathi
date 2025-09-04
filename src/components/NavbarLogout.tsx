@@ -34,31 +34,7 @@ export default function Navbar() {
             </Link>
           </div>
 
-          {/* Desktop Menu - Show different content based on auth status */}
-          <div className="hidden md:flex flex-1 justify-center items-center">
-            {session && (
-              <div className="flex space-x-6">
-                <Link
-                  href="/dashboard"
-                  className="text-sm text-gray-600 hover:text-purple-600 transition-colors duration-200"
-                >
-                  Dashboard
-                </Link>
-                <Link
-                  href="/projects"
-                  className="text-sm text-gray-600 hover:text-purple-600 transition-colors duration-200"
-                >
-                  Projects
-                </Link>
-                <Link
-                  href="/resume"
-                  className="text-sm text-gray-600 hover:text-purple-600 transition-colors duration-200"
-                >
-                  Resume Builder
-                </Link>
-              </div>
-            )}
-          </div>
+          
 
           {/* Right side - Auth dependent content */}
           <div className="hidden md:flex items-center space-x-4">
@@ -166,27 +142,6 @@ export default function Navbar() {
                   </div>
                 </div>
                 
-                <Link
-                  href="/dashboard"
-                  className="block px-3 py-2 text-sm text-gray-600 hover:text-purple-600 hover:bg-purple-50 rounded-md"
-                  onClick={() => setIsOpen(false)}
-                >
-                  Dashboard
-                </Link>
-                <Link
-                  href="/projects"
-                  className="block px-3 py-2 text-sm text-gray-600 hover:text-purple-600 hover:bg-purple-50 rounded-md"
-                  onClick={() => setIsOpen(false)}
-                >
-                  Projects
-                </Link>
-                <Link
-                  href="/resume"
-                  className="block px-3 py-2 text-sm text-gray-600 hover:text-purple-600 hover:bg-purple-50 rounded-md"
-                  onClick={() => setIsOpen(false)}
-                >
-                  Resume Builder
-                </Link>
                 <Link
                   href="/profile"
                   className="block px-3 py-2 text-sm text-gray-600 hover:text-purple-600 hover:bg-purple-50 rounded-md"
