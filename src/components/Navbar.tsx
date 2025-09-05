@@ -1,10 +1,11 @@
 'use client';
+import { useCurrentUser } from '@/hooks/auth';
 import Link from 'next/link';
 import { useState } from 'react';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-
+  const user = useCurrentUser()
   const navLinks = [
     { name: 'Home', href: '/' },
     { name: 'Features', href: '/features' },
@@ -52,7 +53,11 @@ export default function Navbar() {
           </div>
 
           {/* Buttons */}
-          <div className="hidden md:flex items-center space-x-4">
+          { user ?
+          <div>
+            {user?.name}
+            </div> :
+            <div className="hidden md:flex items-center space-x-4">
             <Link
               href="/auth/login"
               className="text-sm px-4 py-2 rounded-md bg-gradient-to-r from-purple-500 to-purple-600 text-white hover:from-purple-600 hover:to-purple-700 hover:scale-105 hover:shadow-md transition-all duration-200"
@@ -66,6 +71,8 @@ export default function Navbar() {
               Get Started
             </Link>
           </div>
+          }
+        
 
           {/* Mobile Menu Button */}
           <div className="md:hidden flex items-center">

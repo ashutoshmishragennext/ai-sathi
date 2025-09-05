@@ -41,12 +41,12 @@ export default function Hero() {
               Start Building Now
             </Link>
 
-            <Link
+            {/* <Link
               href="/features"
               className="text-sm px-6 py-3 rounded-md border border-purple-600 text-purple-600 hover:bg-purple-50 hover:scale-105 hover:shadow-md transition-all duration-200 text-center"
             >
               Explore Templates
-            </Link>
+            </Link> */}
 
             <Link
               href="/interview-prep"

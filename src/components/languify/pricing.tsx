@@ -205,7 +205,7 @@ export default function InterviewPrepPricing() {
         },
         prefill: {
           name: session?.user?.name || '',
-          email: userEmail,
+          email: userEmail, 
         },
         notes: {
           planName: planName,
@@ -250,7 +250,7 @@ export default function InterviewPrepPricing() {
   onClick={() => window.open('https://staging-interview.languify.in', '_blank')}
   className="w-full py-3 px-6 rounded-lg font-bold text-lg bg-purple-600 hover:bg-purple-700 text-white transition-colors flex items-center justify-center"
 >
-  Go to Languify Dashboard <ArrowRight className="ml-2 w-5 h-5" />
+  Go to Preparation Dashboard <ArrowRight className="ml-2 w-5 h-5" />
 </button>
 
         </div>

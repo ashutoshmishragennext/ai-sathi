@@ -1,6 +1,7 @@
 import Footer from '@/components/common/Footer';
 import Hero from '@/components/HeroSection';
 import HowItWorks from '@/components/HowItWorks';
+import InterviewPrepPricing from '@/components/languify/pricing';
 import Navbar from '@/components/Navbar';
 import Pricing from '@/components/PricingSection';
 import TemplatesPreview from '@/components/TemplatesPreviewSection';
@@ -13,7 +14,8 @@ export default function Home() {
       <Hero/>
       <WhyChooseAiSaathi/>
       <HowItWorks/>
-      <Pricing/>
+      <InterviewPrepPricing/>
+      {/* <Pricing/> */}
       <TemplatesPreview/>
      <Footer/>
    </>
