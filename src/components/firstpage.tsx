@@ -1,4 +1,3 @@
-
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 'use client'
@@ -12,6 +11,8 @@ import SkillsTab from './SkillsTab';
 import SummaryTab from './SummaryTab';
 import FinalizeTab from './FinalizeTab';
 import Template2 from './Templates/template2';
+import InterviewPrepPricing from './languify/pricing';
+
 
 const steps = [
   { number: 1, label: 'Templates'},
@@ -34,6 +35,7 @@ const FirstPage = ({ }) => {
   const [selectedTemplateIdx, setSelectedTemplateIdx] = useState(0);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [showInterviewPrep, setShowInterviewPrep] = useState(false); // New state for interview prep
   
   // Check if screen is mobile size
   useEffect(() => {
@@ -79,21 +81,6 @@ const FirstPage = ({ }) => {
       completedSections += 1;
     }
 
-    // Check education section (20% - 4 points)
-    // if (formData.education.length > 0 && formData.education.some(edu => edu.schoolName && edu.schoolName.trim() !== '')) {
-    //   completedSections += 1;
-    // }
-
-    // // Check experience section (20% - 4 points)
-    // if (formData.experience.length > 0 && formData.experience.some(exp => exp.jobTitle && exp.jobTitle.trim() !== '')) {
-    //   completedSections += 1;
-    // }
-
-    // // Check skills section (20% - 4 points)
-    // if (formData.skills.length > 0 && formData.skills.some(skill => skill && skill.trim() !== '')) {
-    //   completedSections += 1;
-    // }
-
     // Check summary section (20% - 4 points)
     if (formData.summary && formData.summary.trim() !== '') {
       completedSections += 1;
@@ -106,11 +93,22 @@ const FirstPage = ({ }) => {
 
   const handleStepClick = (stepIndex: React.SetStateAction<number>) => {
     setSelectedStep(stepIndex);
+    setShowInterviewPrep(false); // Hide interview prep when clicking steps
+  };
+
+  const handleInterviewPrepClick = () => {
+    setShowInterviewPrep(true);
+    setIsMobileMenuOpen(false); // Close mobile menu when clicking
+  };
+
+  const handleBackToResume = () => {
+    setShowInterviewPrep(false);
   };
 
   const handleTemplateSelect = (templateIndex: React.SetStateAction<number>) => {
     setSelectedTemplateIdx(templateIndex);
     setSelectedStep(1);
+    setShowInterviewPrep(false);
   };
 
   const handleNextEducation = () => {
@@ -219,7 +217,7 @@ const FirstPage = ({ }) => {
       <div style={{
         background: '#2a003f',
         color: 'white',
-        width: isMobile ? '50%' : 200,
+        width: isMobile ? '60%' : 240,
         height: isMobile ? '100vh' : '100vh',
         position: 'absolute',
         top: 0,
@@ -238,12 +236,83 @@ const FirstPage = ({ }) => {
         <div style={{ 
           fontWeight: 700, 
           fontSize: isMobile ? 16 : 18, 
-          marginBottom: 20, 
+          marginBottom: 10, 
           letterSpacing: 1,
           textAlign: isMobile ? 'center' : 'left',
           width: '100%',
         }}>
           Build Resume<span style={{ color: '#c4b5fd', fontSize: isMobile ? 14 : 13, marginLeft: 4 }}></span>
+        </div>
+
+         {/* Interview Prep Button */}
+        <div style={{ width: '100%', marginBottom: 30 }}>
+  <button
+    onClick={handleInterviewPrepClick}
+    style={{
+      width: '100%',
+      padding: isMobile ? '12px 16px' : '14px 18px',
+      background: showInterviewPrep
+        ? 'linear-gradient(135deg, #A855F7 0%, #7C3AED 100%)' // lighter → darker purple
+        : 'linear-gradient(135deg, #9333EA 0%, #6D28D9 100%)',
+      border: 'none',
+      borderRadius: '12px',
+      color: 'white',
+      fontSize: isMobile ? 13 : 14,
+      fontWeight: 600,
+      cursor: 'pointer',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      transition: 'all 0.3s ease',
+      boxShadow: showInterviewPrep
+        ? '0 6px 20px rgba(168, 85, 247, 0.4)'
+        : '0 4px 15px rgba(147, 51, 234, 0.3)',
+      transform: showInterviewPrep ? 'translateY(-1px)' : 'none',
+    }}
+    onMouseOver={(e) => {
+      if (!showInterviewPrep) {
+        e.currentTarget.style.background =
+          'linear-gradient(135deg, #A855F7 0%, #7C3AED 100%)';
+        e.currentTarget.style.transform = 'translateY(-1px)';
+        e.currentTarget.style.boxShadow =
+          '0 6px 20px rgba(168, 85, 247, 0.4)';
+      }
+    }}
+    onMouseOut={(e) => {
+      if (!showInterviewPrep) {
+        e.currentTarget.style.background =
+          'linear-gradient(135deg, #9333EA 0%, #6D28D9 100%)';
+        e.currentTarget.style.transform = 'none';
+        e.currentTarget.style.boxShadow =
+          '0 4px 15px rgba(147, 51, 234, 0.3)';
+      }
+    }}
+  >
+    <span style={{ marginRight: 8, fontSize: 16 }}>🎯</span>
+    Interview Prep
+  </button>
+</div>
+
+
+        {/* Divider */}
+        <div style={{
+          width: '100%',
+          height: '1px',
+          background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent)',
+          marginBottom: 20,
+        }} />
+
+        {/* Resume Builder Section Header */}
+        <div style={{
+          fontSize: isMobile ? 11 : 12,
+          fontWeight: 600,
+          color: '#c4b5fd',
+          textTransform: 'uppercase',
+          letterSpacing: 1,
+          marginBottom: 16,
+          width: '100%',
+        }}>
+          Resume Builder
         </div>
         
         {/* Stepper */}
@@ -257,8 +326,29 @@ const FirstPage = ({ }) => {
                 alignItems: 'center',
                 marginBottom: idx < steps.length - 1 ? 12 : 0,
                 cursor: 'pointer',
-                opacity: selectedStep === idx ? 1 : 0.85,
-                padding: isMobile ? '6px 0' : '0',
+                opacity: !showInterviewPrep && selectedStep === idx ? 1 : 0.7,
+                padding: isMobile ? '8px 0' : '6px 0',
+                borderRadius: '8px',
+                transition: 'all 0.2s ease',
+                background: !showInterviewPrep && selectedStep === idx 
+                  ? 'rgba(255, 255, 255, 0.1)' 
+                  : 'transparent',
+                paddingLeft: !showInterviewPrep && selectedStep === idx ? '8px' : '0',
+              }}
+              onMouseOver={(e) => {
+                if (showInterviewPrep || selectedStep !== idx) {
+                  e.currentTarget.style.opacity = '0.9';
+                  e.currentTarget.style.background = 'rgba(255, 255, 255, 0.05)';
+                }
+              }}
+              onMouseOut={(e) => {
+                if (showInterviewPrep || selectedStep !== idx) {
+                  e.currentTarget.style.opacity = '0.7';
+                  e.currentTarget.style.background = 'transparent';
+                } else {
+                  e.currentTarget.style.opacity = '1';
+                  e.currentTarget.style.background = 'rgba(255, 255, 255, 0.1)';
+                }
               }}
             >
               {/* Step circle or check */}
@@ -266,9 +356,9 @@ const FirstPage = ({ }) => {
                 width: isMobile ? 24 : 28,
                 height: isMobile ? 24 : 28,
                 borderRadius: '50%',
-                background: selectedStep === idx ? 'white' : 'transparent',
+                background: !showInterviewPrep && selectedStep === idx ? 'white' : 'transparent',
                 border: '2px solid white',
-                color: selectedStep === idx ? '#7c3aed' : 'white',
+                color: !showInterviewPrep && selectedStep === idx ? '#7c3aed' : 'white',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -276,18 +366,17 @@ const FirstPage = ({ }) => {
                 fontSize: isMobile ? 10 : 12,
                 position: 'relative',
                 zIndex: 1,
-                transition: 'background 0.2s, color 0.2s',
+                transition: 'all 0.2s ease',
                 flexShrink: 0,
               }}>
                 {step.number}
               </div>
               {/* Step label */}
               <span style={{
-                marginLeft: 10,
-                fontWeight: selectedStep === idx ? 700 : 500,
-                color: selectedStep === idx ? 'white' : '#ede9fe',
-                fontSize: isMobile ? 10 : 12,
-                textShadow: selectedStep === idx ? '0 0 8px #fff' : 'none',
+                marginLeft: 12,
+                fontWeight: !showInterviewPrep && selectedStep === idx ? 700 : 500,
+                color: !showInterviewPrep && selectedStep === idx ? 'white' : '#ede9fe',
+                fontSize: isMobile ? 11 : 13,
                 transition: 'color 0.2s',
                 wordBreak: 'break-word',
               }}>{step.label}</span>
@@ -295,43 +384,79 @@ const FirstPage = ({ }) => {
           ))}
         </div>
         
-        {/* Progress bar */}
-        <div style={{ marginTop: 'auto', width: '100%' }}>
-          <div style={{ 
-            fontSize: isMobile ? 12 : 14, 
-            fontWeight: 700, 
-            color: '#c4b5fd', 
-            marginBottom: 6,
-            textAlign: isMobile ? 'center' : 'left',
-          }}>
-            Status:
-          </div>
+        {/* Progress bar - only show when not in interview prep */}
+        {!showInterviewPrep && (
+          <div style={{ marginTop: 'auto', width: '100%' }}>
+            <div style={{ 
+              fontSize: isMobile ? 12 : 14, 
+              fontWeight: 700, 
+              color: '#c4b5fd', 
+              marginBottom: 8,
+              textAlign: isMobile ? 'center' : 'left',
+            }}>
+              Resume Progress:
+            </div>
             <div style={{
-            width: '100%', 
-            height: 6, 
-            background: 'rgba(255,255,255,0.2)', 
-            borderRadius: 3,
+              width: '100%', 
+              height: 8, 
+              background: 'rgba(255,255,255,0.2)', 
+              borderRadius: 4,
               overflow: 'hidden',
             }}>
               <div style={{
-              width: `${calculateCompleteness()}%`, 
-              height: '100%', 
-                background: '#c4b5fd',
-              borderRadius: 3,
-              transition: 'width 0.3s ease',
+                width: `${calculateCompleteness()}%`, 
+                height: '100%', 
+                background: 'linear-gradient(90deg, #c4b5fd, #8B5CF6)',
+                borderRadius: 4,
+                transition: 'width 0.3s ease',
               }} />
             </div>
-          <div style={{ 
-            fontSize: isMobile ? 11 : 13, 
-            color: '#ede9fe', 
-            marginTop: 6,
-            textAlign: isMobile ? 'center' : 'left',
-          }}>
-            {calculateCompleteness()}% Complete
+            <div style={{ 
+              fontSize: isMobile ? 11 : 13, 
+              color: '#ede9fe', 
+              marginTop: 8,
+              textAlign: isMobile ? 'center' : 'left',
+            }}>
+              {calculateCompleteness()}% Complete
+            </div>
           </div>
-        </div>
+        )}
 
-        {/* Bottom action buttons removed */}
+        {/* Back to Resume button - only show when in interview prep */}
+        {showInterviewPrep && (
+          <div style={{ marginTop: 'auto', width: '100%', paddingTop: 20 }}>
+            <button
+              onClick={handleBackToResume}
+              style={{
+                width: '100%',
+                padding: isMobile ? '12px 16px' : '14px 18px',
+                background: 'transparent',
+                border: '2px solid rgba(255, 255, 255, 0.5)',
+                borderRadius: '8px',
+                color: '#ede9fe',
+                fontSize: isMobile ? 12 : 13,
+                fontWeight: 500,
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                transition: 'all 0.2s ease',
+              }}
+              onMouseOver={(e) => {
+                e.currentTarget.style.background = 'rgba(255, 255, 255, 0.1)';
+                e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.8)';
+                e.currentTarget.style.color = 'white';
+              }}
+              onMouseOut={(e) => {
+                e.currentTarget.style.background = 'transparent';
+                e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.5)';
+                e.currentTarget.style.color = '#ede9fe';
+              }}
+            >
+              ← Back to Resume Builder
+            </button>
+          </div>
+        )}
       </div>
 
       {/* Mobile Overlay */}
@@ -362,70 +487,78 @@ const FirstPage = ({ }) => {
         padding: isMobile ? '80px 16px 16px' : '0',
         width: isMobile ? '100%' : 'auto',
       }}>
-        {selectedStep === 0 && <TemplateTab onUseTemplate={handleTemplateSelect} />}
-        {selectedStep === 1 && (
-          <HeadingTab 
-            selectedTemplate={React.cloneElement(templateComponents[selectedTemplateIdx], { formData })}
-            onNext={handleNextEducation} 
-            onGoBack={() => handleGoBack(0)}
-            formData={formData.heading}
-            updateFormData={updateHeading}
-            fullFormData={formData}
-          />
+        {/* Show Interview Prep or Resume Builder based on state */}
+        {showInterviewPrep ? (
+          <div style={{ width: '100%', height: '100%' }}>
+            <InterviewPrepPricing />
+          </div>
+        ) : (
+          <>
+            {selectedStep === 0 && <TemplateTab onUseTemplate={handleTemplateSelect} />}
+            {selectedStep === 1 && (
+              <HeadingTab 
+                selectedTemplate={React.cloneElement(templateComponents[selectedTemplateIdx], { formData })}
+                onNext={handleNextEducation} 
+                onGoBack={() => handleGoBack(0)}
+                formData={formData.heading}
+                updateFormData={updateHeading}
+                fullFormData={formData}
+              />
+            )}
+            {selectedStep === 2 && (
+              <EducationTab 
+                selectedTemplate={React.cloneElement(templateComponents[selectedTemplateIdx], { formData })}
+                onGoBack={() => handleGoBack(1)} 
+                onNext={handleNextExperience}
+                formData={formData.education}
+                updateFormData={updateEducation}
+                fullFormData={formData}
+              />
+            )}
+            {selectedStep === 3 && (
+              <ExperienceTab 
+                selectedTemplate={React.cloneElement(templateComponents[selectedTemplateIdx], { formData })}
+                onGoBack={() => handleGoBack(2)}
+                onNext={handleNextSkills}
+                formData={formData.experience}
+                updateFormData={updateExperience}
+                fullFormData={formData}
+              />
+            )}
+            {selectedStep === 4 && (
+              <SkillsTab 
+                selectedTemplate={React.cloneElement(templateComponents[selectedTemplateIdx], { formData })}
+                onGoBack={() => handleGoBack(3)}
+                onNext={handleNextSummary}
+                formData={formData.skills}
+                updateFormData={updateSkills}
+                fullFormData={formData}
+              />
+            )}
+            {selectedStep === 5 && (
+              <SummaryTab 
+                selectedTemplate={React.cloneElement(templateComponents[selectedTemplateIdx], { formData })}
+                onGoBack={() => handleGoBack(4)}
+                onNext={handleNextFinalize}
+                formData={formData.summary}
+                updateFormData={updateSummary}
+                fullFormData={formData}
+              />
+            )}
+            {selectedStep === 6 && (
+              <FinalizeTab 
+                onGoBack={() => handleGoBack(5)}
+                selectedTemplate={selectedTemplateIdx}
+                formData={formData}
+                updateSummary={updateSummary}
+                updateEducation={updateEducation}
+                updateExperience={updateExperience}
+                updateSkills={updateSkills}
+                updateHeading={updateHeading}
+              />
+            )}
+          </>
         )}
-        {selectedStep === 2 && (
-          <EducationTab 
-            selectedTemplate={React.cloneElement(templateComponents[selectedTemplateIdx], { formData })}
-            onGoBack={() => handleGoBack(1)} 
-            onNext={handleNextExperience}
-            formData={formData.education}
-            updateFormData={updateEducation}
-            fullFormData={formData}
-          />
-        )}
-        {selectedStep === 3 && (
-          <ExperienceTab 
-            selectedTemplate={React.cloneElement(templateComponents[selectedTemplateIdx], { formData })}
-            onGoBack={() => handleGoBack(2)}
-            onNext={handleNextSkills}
-            formData={formData.experience}
-            updateFormData={updateExperience}
-            fullFormData={formData}
-          />
-        )}
-        {selectedStep === 4 && (
-          <SkillsTab 
-            selectedTemplate={React.cloneElement(templateComponents[selectedTemplateIdx], { formData })}
-            onGoBack={() => handleGoBack(3)}
-            onNext={handleNextSummary}
-            formData={formData.skills}
-            updateFormData={updateSkills}
-            fullFormData={formData}
-          />
-        )}
-        {selectedStep === 5 && (
-          <SummaryTab 
-            selectedTemplate={React.cloneElement(templateComponents[selectedTemplateIdx], { formData })}
-            onGoBack={() => handleGoBack(4)}
-            onNext={handleNextFinalize}
-            formData={formData.summary}
-            updateFormData={updateSummary}
-            fullFormData={formData}
-          />
-        )}
-        {selectedStep === 6 && (
-          <FinalizeTab 
-            onGoBack={() => handleGoBack(5)}
-            selectedTemplate={selectedTemplateIdx}
-            formData={formData}
-            updateSummary={updateSummary}
-            updateEducation={updateEducation}
-            updateExperience={updateExperience}
-            updateSkills={updateSkills}
-            updateHeading={updateHeading}
-          />
-        )}
-        {/* Saved Resume step removed */}
       </div>
     </div>
   )

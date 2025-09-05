@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Check, Users, Clock, Headphones, Trophy, UserCheck, BarChart3 } from 'lucide-react';
+import { Check, Users, Clock, Headphones, Trophy, UserCheck, BarChart3, ArrowRight } from 'lucide-react';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 
@@ -29,6 +29,7 @@ const useRazorpay = () => {
 export default function InterviewPrepPricing() {
   const [selectedPlan, setSelectedPlan] = useState<string>('Standard Plan');
   const [loading, setLoading] = useState(true);
+  const [hasAccess, setHasAccess] = useState(false); // New state to control the card display
   const { data: session, status } = useSession();
   const router = useRouter();
   const userEmail = session?.user?.email;
@@ -49,7 +50,8 @@ export default function InterviewPrepPricing() {
           const data = await response.json();
           
           if (data.isValid) {
-            router.push('https://staging-interview.languify.in');
+            setHasAccess(true); // Set state to true if user has valid access
+            setLoading(false); // Stop loading to render the component
           } else {
             setLoading(false);
           }
@@ -63,8 +65,9 @@ export default function InterviewPrepPricing() {
     };
 
     checkValidityAndRedirect();
-  }, [status, session, router]);
+  }, [status, session]); // Removed 'router' from dependency array
 
+  // ... (rest of the component, handlePayment function remains the same)
   const plans = [
     {
       name: 'Basic Plan',
@@ -229,6 +232,28 @@ export default function InterviewPrepPricing() {
     return (
       <div className="flex items-center justify-center min-h-screen">
         <p className="text-xl text-gray-700">Checking your access status...</p>
+      </div>
+    );
+  }
+
+  // Conditional Rendering based on `hasAccess`
+  if (hasAccess) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 flex items-center justify-center p-4">
+        <div className="bg-white rounded-2xl shadow-xl p-8 max-w-md w-full text-center border-t-4 border-purple-500">
+          <Check className="w-16 h-16 text-purple-500 mx-auto mb-4" />
+          <h2 className="text-2xl font-bold text-gray-900 mb-2">You Already Have Access!</h2>
+          <p className="text-gray-600 mb-6">
+            It looks like your account already has a valid subscription. You can head straight to the platform and continue your interview preparation.
+          </p>
+          <button
+  onClick={() => window.open('https://staging-interview.languify.in', '_blank')}
+  className="w-full py-3 px-6 rounded-lg font-bold text-lg bg-purple-600 hover:bg-purple-700 text-white transition-colors flex items-center justify-center"
+>
+  Go to Languify Dashboard <ArrowRight className="ml-2 w-5 h-5" />
+</button>
+
+        </div>
       </div>
     );
   }

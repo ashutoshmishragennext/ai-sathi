@@ -34,6 +34,8 @@ interface PaymentVerificationRequest {
 }
 
 async function onboardUser(userData: LanguifyUserData): Promise<any> {
+
+  console.log(userData)
   try {
     const response = await fetch('https://staging-api.languify.in/client/user-onboard', {
       method: 'POST',
@@ -50,6 +52,7 @@ async function onboardUser(userData: LanguifyUserData): Promise<any> {
     if (!response.ok) {
       throw new Error(`Languify API error: ${response.statusText}`);
     }
+    
 
     return await response.json();
   } catch (error) {
