@@ -203,7 +203,8 @@ export const StudentsTable = pgTable(
   {
     id: uuid("id").defaultRandom().primaryKey().notNull(),
     userId: uuid("user_id").notNull(), // Foreign key to UsersTable
-    
+    accessPeriodMonths: integer("access_period_months").default(0), // New field to store access duration
+    validityExpiresAt: timestamp("validity_expires_at", { mode: "date" }),
     // Personal Information
     firstName: text("first_name").notNull(),
     lastName: text("last_name").notNull(),
@@ -255,6 +256,7 @@ export const StudentsTable = pgTable(
     updatedAt: timestamp("updated_at").defaultNow().notNull(),
   },
   (table) => [
+    uniqueIndex("students_user_id_key").on(table.userId),
     uniqueIndex("students_email_key").on(table.email),
     index("students_user_idx").on(table.userId),
     index("students_name_idx").on(table.firstName, table.lastName),
@@ -402,6 +404,30 @@ export const GeneratedResumesTable = pgTable(
 
 export type GeneratedResume = InferModel<typeof GeneratedResumesTable>;
 export type NewGeneratedResume = InferModel<typeof GeneratedResumesTable, "insert">;
+
+export const PaymentsTable = pgTable(
+  "payments",
+  {
+    id: uuid("id").defaultRandom().primaryKey().notNull(),
+    userId: uuid("user_id")
+      .notNull()
+      .references(() => UsersTable.id),
+    razorpayOrderId: text("razorpay_order_id").notNull(),
+    razorpayPaymentId: text("razorpay_payment_id").notNull(),
+    planName: text("plan_name").notNull(),
+    amount: integer("amount").notNull(), // Amount in paise
+    status: text("status").notNull(), // e.g., 'captured', 'failed'
+    createdAt: timestamp("created_at").defaultNow().notNull(),
+  },
+  (table) => [
+    uniqueIndex("payments_razorpay_order_id_key").on(table.razorpayOrderId),
+    uniqueIndex("payments_razorpay_payment_id_key").on(table.razorpayPaymentId),
+    index("payments_user_id_idx").on(table.userId),
+  ]
+);
+
+export type Payment = InferModel<typeof PaymentsTable>;
+export type NewPayment = InferModel<typeof PaymentsTable, "insert">;
 
 
 
