@@ -162,7 +162,7 @@ export default function InterviewPrepPricing() {
         key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID,
         amount: order.amount,
         currency: order.currency,
-        name: 'Languify',
+        name: 'Ai-sathi',
         description: `Purchase of ${planName}`,
         order_id: order.id,
         handler: async function (response: any) {
@@ -193,7 +193,8 @@ export default function InterviewPrepPricing() {
             const verificationData = await verificationResponse.json();
 
             if (verificationResponse.ok && verificationData.success) {
-              window.open('/Interview-Prep-Dashboard', '_blank')
+              
+              router.push('/Interview-Prep-Dashboard')
             } else {
               alert(`Payment verification failed: ${verificationData.error || 'Unknown error'}`);
             }
@@ -410,7 +411,7 @@ export default function InterviewPrepPricing() {
           </p>
           <div className="flex items-center justify-center">
             <Headphones className="w-5 h-5 text-blue-500 mr-2" />
-            <span className="text-blue-600 font-medium">support@languify.in</span>
+            <span className="text-blue-600 font-medium">Support@aisaathi.com</span>
           </div>
         </div>
       </div>
