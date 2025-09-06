@@ -1,0 +1,2100 @@
+
+{
+    "user": "zubair@gmail.com",
+    "attemptId": "67d69244a85e8ab0bcf94806",
+    "assessmentId" : "67d69222a36e8ab0bcf95805",
+    "questionWiseAnalysis": [
+        {
+            "question": "Hi Zubair, thank you for taking the time to speak with me today! Can you start by sharing what attracted you to the Business Development Intern role at Paytm Insider?",
+            "analysis": {
+                "isError": false,
+                "statusCode": 200,
+                "message": "Successfully analysed",
+                "data": {
+                    "communication": {
+                        "ratings": {
+                            "WORD_CHOICE": 68,
+                            "FLUENCY": 80,
+                            "DELIVERY": 100,
+                            "CONFIDENCE": 81,
+                            "OVERALL": 84
+                        },
+                        "features": [
+                            {
+                                "category": "WORD_CHOICE",
+                                "subCategory": "INFORMAL_WORDS",
+                                "value": [
+                                    {
+                                        "count": 2,
+                                        "word": "yeah",
+                                        "positions": [
+                                            {
+                                                "start": 37,
+                                                "end": 40
+                                            },
+                                            {
+                                                "start": 690,
+                                                "end": 693
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "normPercentage": 1.4
+                            },
+                            {
+                                "category": "WORD_CHOICE",
+                                "subCategory": "HINDI_SHARE",
+                                "value": 0
+                            },
+                            {
+                                "category": "WORD_CHOICE",
+                                "subCategory": "RARE_USED_WORDS",
+                                "value": [
+                                    {
+                                        "count": 1,
+                                        "word": "standard",
+                                        "positions": [
+                                            {
+                                                "start": 223,
+                                                "end": 230
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "count": 1,
+                                        "word": "level",
+                                        "positions": [
+                                            {
+                                                "start": 667,
+                                                "end": 671
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "count": 1,
+                                        "word": "close",
+                                        "positions": [
+                                            {
+                                                "start": 427,
+                                                "end": 431
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "normPercentage": 2.1
+                            },
+                            {
+                                "category": "FLUENCY",
+                                "subCategory": "FILLER_PHRASES",
+                                "value": [
+                                    {
+                                        "count": 6,
+                                        "word": "i think",
+                                        "positions": [
+                                            {
+                                                "start": 143,
+                                                "end": 149
+                                            },
+                                            {
+                                                "start": 235,
+                                                "end": 241
+                                            },
+                                            {
+                                                "start": 341,
+                                                "end": 347
+                                            },
+                                            {
+                                                "start": 460,
+                                                "end": 466
+                                            },
+                                            {
+                                                "start": 507,
+                                                "end": 513
+                                            },
+                                            {
+                                                "start": 623,
+                                                "end": 629
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "normPercentage": 4.1
+                            },
+                            {
+                                "category": "FLUENCY",
+                                "subCategory": "FILLER_UTTERANCES",
+                                "value": [
+                                    {
+                                        "count": 6,
+                                        "word": "um",
+                                        "positions": [
+                                            {
+                                                "start": 16,
+                                                "end": 17
+                                            },
+                                            {
+                                                "start": 50,
+                                                "end": 51
+                                            },
+                                            {
+                                                "start": 89,
+                                                "end": 90
+                                            },
+                                            {
+                                                "start": 207,
+                                                "end": 208
+                                            },
+                                            {
+                                                "start": 386,
+                                                "end": 387
+                                            },
+                                            {
+                                                "start": 424,
+                                                "end": 425
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "count": 6,
+                                        "word": "uh",
+                                        "positions": [
+                                            {
+                                                "start": 155,
+                                                "end": 156
+                                            },
+                                            {
+                                                "start": 308,
+                                                "end": 309
+                                            },
+                                            {
+                                                "start": 338,
+                                                "end": 339
+                                            },
+                                            {
+                                                "start": 543,
+                                                "end": 544
+                                            },
+                                            {
+                                                "start": 560,
+                                                "end": 561
+                                            },
+                                            {
+                                                "start": 601,
+                                                "end": 602
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "normPercentage": 8.3
+                            },
+                            {
+                                "category": "FLUENCY",
+                                "subCategory": "PAUSES",
+                                "value": 51,
+                                "count": 16
+                            },
+                            {
+                                "category": "FLUENCY",
+                                "subCategory": "DISFLUENCY",
+                                "value": 5,
+                                "normPercentage": 3.4
+                            },
+                            {
+                                "category": "DELIVERY",
+                                "subCategory": "PACE",
+                                "value": 130
+                            },
+                            {
+                                "category": "DELIVERY",
+                                "subCategory": "ENERGY",
+                                "value": 2
+                            }
+                        ]
+                    },
+                    "content": {
+                        "ratings": {
+                            "SIMILARITY": 40,
+                            "RELEVANCE": 60,
+                            "LOGIC_FLOW": 50,
+                            "OVERALL": 50
+                        },
+                        "features": [
+                            {
+                                "category": "RELEVANCE",
+                                "subCategory": "JARGON_WORDS",
+                                "value": [
+                                    {
+                                        "count": 2,
+                                        "word": "development",
+                                        "positions": [
+                                            {
+                                                "start": 252,
+                                                "end": 262
+                                            },
+                                            {
+                                                "start": 357,
+                                                "end": 367
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "count": 1,
+                                        "word": "product",
+                                        "positions": [
+                                            {
+                                                "start": 349,
+                                                "end": 355
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "count": 1,
+                                        "word": "business",
+                                        "positions": [
+                                            {
+                                                "start": 243,
+                                                "end": 250
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "normPercentage": 2.8
+                            }
+                        ]
+                    }
+                }
+            },
+            "answer": "Hello, my name, um, this is Zubair. So, yeah, from my, um, actually I'm doing my second year at, um, Computer Science and Engineering in DCD5 method. So, I think it's, uh, my dream to be a non-entrepreneur from the age of, um, from my 11th standard. So, I think business development internal at Paytm can make me a good one in, uh, the entrepreneurship phase. Uh, I think product development suits me because, um, I can help in lead generations and, um, close lines for Paytm Insider. So, I think my previous background speaks about me. I think it will be great to work in, uh, Paytm Insider. Uh, I can make myself better and also the, uh, Paytm to be better. I think I can work for Paytm in the highest level as much as I can. Yeah, thank you.",
+            "timeTaken": 67
+        },
+        {
+            "question": "What aspects of business development are you most passionate about, and how do you see yourself contributing to our mission of expanding our presence in the West region?",
+            "analysis": {
+                "isError": false,
+                "statusCode": 200,
+                "message": "Successfully analysed",
+                "data": {
+                    "communication": {
+                        "ratings": {
+                            "WORD_CHOICE": 77,
+                            "FLUENCY": 93,
+                            "DELIVERY": 88,
+                            "CONFIDENCE": 81,
+                            "OVERALL": 81
+                        },
+                        "features": [
+                            {
+                                "category": "WORD_CHOICE",
+                                "subCategory": "INFORMAL_WORDS",
+                                "value": [
+                                    {
+                                        "count": 1,
+                                        "word": "yeah",
+                                        "positions": [
+                                            {
+                                                "start": 286,
+                                                "end": 289
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "normPercentage": 1.5
+                            },
+                            {
+                                "category": "WORD_CHOICE",
+                                "subCategory": "HINDI_SHARE",
+                                "value": 0
+                            },
+                            {
+                                "category": "FLUENCY",
+                                "subCategory": "FILLER_PHRASES",
+                                "value": [
+                                    {
+                                        "count": 3,
+                                        "word": "i think",
+                                        "positions": [
+                                            {
+                                                "start": 2,
+                                                "end": 8
+                                            },
+                                            {
+                                                "start": 40,
+                                                "end": 46
+                                            },
+                                            {
+                                                "start": 291,
+                                                "end": 297
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "normPercentage": 4.4
+                            },
+                            {
+                                "category": "FLUENCY",
+                                "subCategory": "FILLER_UTTERANCES",
+                                "value": [
+                                    {
+                                        "count": 1,
+                                        "word": "um",
+                                        "positions": [
+                                            {
+                                                "start": 10,
+                                                "end": 11
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "normPercentage": 1.5
+                            },
+                            {
+                                "category": "FLUENCY",
+                                "subCategory": "PAUSES",
+                                "value": 85,
+                                "count": 3
+                            },
+                            {
+                                "category": "FLUENCY",
+                                "subCategory": "DISFLUENCY",
+                                "value": 1,
+                                "normPercentage": 1.5
+                            },
+                            {
+                                "category": "DELIVERY",
+                                "subCategory": "PACE",
+                                "value": 146
+                            },
+                            {
+                                "category": "DELIVERY",
+                                "subCategory": "ENERGY",
+                                "value": 1
+                            }
+                        ]
+                    },
+                    "content": {
+                        "ratings": {
+                            "SIMILARITY": 60,
+                            "RELEVANCE": 70,
+                            "LOGIC_FLOW": 60,
+                            "OVERALL": 63
+                        },
+                        "features": [
+                            {
+                                "category": "RELEVANCE",
+                                "subCategory": "JARGON_WORDS",
+                                "value": [
+                                    {
+                                        "count": 3,
+                                        "word": "sales",
+                                        "positions": [
+                                            {
+                                                "start": 73,
+                                                "end": 77
+                                            },
+                                            {
+                                                "start": 106,
+                                                "end": 110
+                                            },
+                                            {
+                                                "start": 194,
+                                                "end": 198
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "count": 1,
+                                        "word": "product",
+                                        "positions": [
+                                            {
+                                                "start": 182,
+                                                "end": 188
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "count": 1,
+                                        "word": "research",
+                                        "positions": [
+                                            {
+                                                "start": 31,
+                                                "end": 38
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "count": 2,
+                                        "word": "marketing",
+                                        "positions": [
+                                            {
+                                                "start": 83,
+                                                "end": 91
+                                            },
+                                            {
+                                                "start": 116,
+                                                "end": 124
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "normPercentage": 10.3
+                            }
+                        ]
+                    }
+                }
+            },
+            "answer": "I think, um, in that aspect of research, I think I'm more passionate about sales and marketing. I can do the sales and marketing job better. In the mission of West Region, I can make the product and sales region better. I can work for that. I can work very much, very much, very much in that. So, yeah, I think I can make it better there.",
+            "timeTaken": 28
+        },
+        {
+            "question": "Can you describe any past experiences where you had to maintain client relationships or work with local partners? What did you learn from that experience?",
+            "analysis": {
+                "isError": false,
+                "statusCode": 200,
+                "message": "Successfully analysed",
+                "data": {
+                    "communication": {
+                        "ratings": {
+                            "WORD_CHOICE": 64,
+                            "FLUENCY": 97,
+                            "DELIVERY": 63,
+                            "CONFIDENCE": 79,
+                            "OVERALL": 71
+                        },
+                        "features": [
+                            {
+                                "category": "WORD_CHOICE",
+                                "subCategory": "INFORMAL_WORDS",
+                                "value": [
+                                    {
+                                        "count": 3,
+                                        "word": "yeah",
+                                        "positions": [
+                                            {
+                                                "start": 2,
+                                                "end": 5
+                                            },
+                                            {
+                                                "start": 295,
+                                                "end": 298
+                                            },
+                                            {
+                                                "start": 353,
+                                                "end": 356
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "normPercentage": 4
+                            },
+                            {
+                                "category": "WORD_CHOICE",
+                                "subCategory": "HINDI_SHARE",
+                                "value": 0
+                            },
+                            {
+                                "category": "WORD_CHOICE",
+                                "subCategory": "RARE_USED_WORDS",
+                                "value": [
+                                    {
+                                        "count": 1,
+                                        "word": "role",
+                                        "positions": [
+                                            {
+                                                "start": 345,
+                                                "end": 348
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "count": 1,
+                                        "word": "close",
+                                        "positions": [
+                                            {
+                                                "start": 272,
+                                                "end": 276
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "normPercentage": 2.7
+                            },
+                            {
+                                "category": "FLUENCY",
+                                "subCategory": "FILLER_WORDS",
+                                "value": [
+                                    {
+                                        "count": 3,
+                                        "word": "yeah",
+                                        "positions": [
+                                            {
+                                                "start": 2,
+                                                "end": 5
+                                            },
+                                            {
+                                                "start": 295,
+                                                "end": 298
+                                            },
+                                            {
+                                                "start": 353,
+                                                "end": 356
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "normPercentage": 4
+                            },
+                            {
+                                "category": "FLUENCY",
+                                "subCategory": "PAUSES",
+                                "value": 91,
+                                "count": 2
+                            },
+                            {
+                                "category": "FLUENCY",
+                                "subCategory": "DISFLUENCY",
+                                "value": 0,
+                                "normPercentage": 0
+                            },
+                            {
+                                "category": "DELIVERY",
+                                "subCategory": "PACE",
+                                "value": 167
+                            },
+                            {
+                                "category": "DELIVERY",
+                                "subCategory": "ENERGY",
+                                "value": 2
+                            }
+                        ]
+                    },
+                    "content": {
+                        "ratings": {
+                            "SIMILARITY": 60,
+                            "RELEVANCE": 70,
+                            "LOGIC_FLOW": 60,
+                            "OVERALL": 63
+                        },
+                        "features": []
+                    }
+                }
+            },
+            "answer": "Yeah, I have been working in Anguify AI, which is a conversation AI platform. In there, I have been with the maintenance client relationship and then local partners. See, I have learned that how to be connected with people to make the client relationship with them and how to close the deal as well. Yeah, I have been working as much as I can in this role. So, yeah, I think I can work that.",
+            "timeTaken": 27
+        },
+        {
+            "question": "How do you typically approach problem-solving when faced with challenges in client interactions or project management?",
+            "analysis": {
+                "isError": false,
+                "statusCode": 200,
+                "message": "Successfully analysed",
+                "data": {
+                    "communication": {
+                        "ratings": {
+                            "WORD_CHOICE": 67,
+                            "FLUENCY": 89,
+                            "DELIVERY": 81,
+                            "CONFIDENCE": 82,
+                            "OVERALL": 78
+                        },
+                        "features": [
+                            {
+                                "category": "WORD_CHOICE",
+                                "subCategory": "INFORMAL_WORDS",
+                                "value": [
+                                    {
+                                        "count": 3,
+                                        "word": "yeah",
+                                        "positions": [
+                                            {
+                                                "start": 314,
+                                                "end": 317
+                                            },
+                                            {
+                                                "start": 323,
+                                                "end": 326
+                                            },
+                                            {
+                                                "start": 505,
+                                                "end": 508
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "normPercentage": 2.3
+                            },
+                            {
+                                "category": "WORD_CHOICE",
+                                "subCategory": "HINDI_SHARE",
+                                "value": 0
+                            },
+                            {
+                                "category": "FLUENCY",
+                                "subCategory": "FILLER_UTTERANCES",
+                                "value": [
+                                    {
+                                        "count": 3,
+                                        "word": "um",
+                                        "positions": [
+                                            {
+                                                "start": 2,
+                                                "end": 3
+                                            },
+                                            {
+                                                "start": 26,
+                                                "end": 27
+                                            },
+                                            {
+                                                "start": 599,
+                                                "end": 600
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "count": 4,
+                                        "word": "uh",
+                                        "positions": [
+                                            {
+                                                "start": 40,
+                                                "end": 41
+                                            },
+                                            {
+                                                "start": 273,
+                                                "end": 274
+                                            },
+                                            {
+                                                "start": 290,
+                                                "end": 291
+                                            },
+                                            {
+                                                "start": 430,
+                                                "end": 431
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "count": 1,
+                                        "word": "hmm",
+                                        "positions": [
+                                            {
+                                                "start": 319,
+                                                "end": 321
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "normPercentage": 6.2
+                            },
+                            {
+                                "category": "FLUENCY",
+                                "subCategory": "PAUSES",
+                                "value": 78,
+                                "count": 8
+                            },
+                            {
+                                "category": "FLUENCY",
+                                "subCategory": "DISFLUENCY",
+                                "value": 1,
+                                "normPercentage": 0.8
+                            },
+                            {
+                                "category": "DELIVERY",
+                                "subCategory": "PACE",
+                                "value": 155
+                            },
+                            {
+                                "category": "DELIVERY",
+                                "subCategory": "ENERGY",
+                                "value": 2
+                            }
+                        ]
+                    },
+                    "content": {
+                        "ratings": {
+                            "SIMILARITY": 20,
+                            "RELEVANCE": 30,
+                            "LOGIC_FLOW": 20,
+                            "OVERALL": 23
+                        },
+                        "features": [
+                            {
+                                "category": "RELEVANCE",
+                                "subCategory": "JARGON_WORDS",
+                                "value": [
+                                    {
+                                        "count": 1,
+                                        "word": "management",
+                                        "positions": [
+                                            {
+                                                "start": 518,
+                                                "end": 527
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "count": 2,
+                                        "word": "research",
+                                        "positions": [
+                                            {
+                                                "start": 46,
+                                                "end": 53
+                                            },
+                                            {
+                                                "start": 258,
+                                                "end": 265
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "count": 1,
+                                        "word": "team",
+                                        "positions": [
+                                            {
+                                                "start": 568,
+                                                "end": 571
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "normPercentage": 3.1
+                            }
+                        ]
+                    }
+                }
+            },
+            "answer": "Um, I think in this case, um, we need to, uh, do research about the previous problems. Like, previous problems, how they're solved, all these things are first thing. Like, we should need to, like, search for that, how they did, how well they did. All these things I should research, right? Uh, that would be, uh, something in my mind, yeah. Hmm, yeah, client interactions, if there's something client interactions, I can give my 100% to look on that because, uh, it's very bad to say along to client. It's always just to say about us. And, yeah, project management as a lead, I can do my best to make the team work better. Like, I can do, um, much to do that well.",
+            "timeTaken": 50
+        },
+        {
+            "question": "Can you share an example of a time when you had to gather feedback from clients or partners? How did you handle that situation?",
+            "analysis": {
+                "isError": false,
+                "statusCode": 200,
+                "message": "Successfully analysed",
+                "data": {
+                    "communication": {
+                        "ratings": {
+                            "WORD_CHOICE": 62,
+                            "FLUENCY": 92,
+                            "DELIVERY": 98,
+                            "CONFIDENCE": 87,
+                            "OVERALL": 84
+                        },
+                        "features": [
+                            {
+                                "category": "WORD_CHOICE",
+                                "subCategory": "HINDI_SHARE",
+                                "value": 0
+                            },
+                            {
+                                "category": "WORD_CHOICE",
+                                "subCategory": "RARE_USED_WORDS",
+                                "value": [
+                                    {
+                                        "count": 3,
+                                        "word": "meet",
+                                        "positions": [
+                                            {
+                                                "start": 228,
+                                                "end": 231
+                                            },
+                                            {
+                                                "start": 245,
+                                                "end": 248
+                                            },
+                                            {
+                                                "start": 358,
+                                                "end": 361
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "normPercentage": 2.8
+                            },
+                            {
+                                "category": "FLUENCY",
+                                "subCategory": "FILLER_UTTERANCES",
+                                "value": [
+                                    {
+                                        "count": 2,
+                                        "word": "uh",
+                                        "positions": [
+                                            {
+                                                "start": 233,
+                                                "end": 234
+                                            },
+                                            {
+                                                "start": 305,
+                                                "end": 306
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "count": 1,
+                                        "word": "um",
+                                        "positions": [
+                                            {
+                                                "start": 111,
+                                                "end": 112
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "normPercentage": 2.8
+                            },
+                            {
+                                "category": "FLUENCY",
+                                "subCategory": "PAUSES",
+                                "value": 72,
+                                "count": 7
+                            },
+                            {
+                                "category": "FLUENCY",
+                                "subCategory": "DISFLUENCY",
+                                "value": 1,
+                                "normPercentage": 0.9
+                            },
+                            {
+                                "category": "DELIVERY",
+                                "subCategory": "PACE",
+                                "value": 133
+                            },
+                            {
+                                "category": "DELIVERY",
+                                "subCategory": "ENERGY",
+                                "value": 2
+                            }
+                        ]
+                    },
+                    "content": {
+                        "ratings": {
+                            "SIMILARITY": 20,
+                            "RELEVANCE": 60,
+                            "LOGIC_FLOW": 40,
+                            "OVERALL": 40
+                        },
+                        "features": [
+                            {
+                                "category": "RELEVANCE",
+                                "subCategory": "JARGON_WORDS",
+                                "value": [
+                                    {
+                                        "count": 1,
+                                        "word": "team",
+                                        "positions": [
+                                            {
+                                                "start": 258,
+                                                "end": 261
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "normPercentage": 0.9
+                            }
+                        ]
+                    }
+                }
+            },
+            "answer": "Together, feedbacks from the clients is very difficult, actually, because they don't often do that. It's something, um, like, we need to use the time. In this feedback session, we need client's time. So, I think it would be great to have a meet. Uh, I have a meet with my team to get feedbacks. And with clients, I think, uh, something like, partners, you know, I do this with a meet. So, also clients in the shop, in-shop, like, in-app feedbacks would be great. Then, making them to run with the other apps. I think in-app feedbacks would work in that case.",
+            "timeTaken": 49
+        },
+        {
+            "question": "What is your current availability for this internship, and are you open to relocating if necessary?",
+            "analysis": {
+                "isError": false,
+                "statusCode": 200,
+                "message": "Successfully analysed",
+                "data": {
+                    "communication": {
+                        "ratings": {
+                            "WORD_CHOICE": 64,
+                            "FLUENCY": 92,
+                            "DELIVERY": 35,
+                            "CONFIDENCE": 57,
+                            "OVERALL": 60
+                        },
+                        "features": [
+                            {
+                                "category": "WORD_CHOICE",
+                                "subCategory": "INFORMAL_WORDS",
+                                "value": [
+                                    {
+                                        "count": 4,
+                                        "word": "yeah",
+                                        "positions": [
+                                            {
+                                                "start": 2,
+                                                "end": 5
+                                            },
+                                            {
+                                                "start": 39,
+                                                "end": 42
+                                            },
+                                            {
+                                                "start": 62,
+                                                "end": 65
+                                            },
+                                            {
+                                                "start": 170,
+                                                "end": 173
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "normPercentage": 10.3
+                            },
+                            {
+                                "category": "WORD_CHOICE",
+                                "subCategory": "HINDI_SHARE",
+                                "value": 0
+                            },
+                            {
+                                "category": "WORD_CHOICE",
+                                "subCategory": "RARE_USED_WORDS",
+                                "value": [
+                                    {
+                                        "count": 1,
+                                        "word": "current",
+                                        "positions": [
+                                            {
+                                                "start": 77,
+                                                "end": 83
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "normPercentage": 2.6
+                            },
+                            {
+                                "category": "FLUENCY",
+                                "subCategory": "FILLER_WORDS",
+                                "value": [
+                                    {
+                                        "count": 4,
+                                        "word": "yeah",
+                                        "positions": [
+                                            {
+                                                "start": 2,
+                                                "end": 5
+                                            },
+                                            {
+                                                "start": 39,
+                                                "end": 42
+                                            },
+                                            {
+                                                "start": 62,
+                                                "end": 65
+                                            },
+                                            {
+                                                "start": 170,
+                                                "end": 173
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "normPercentage": 10.3
+                            },
+                            {
+                                "category": "FLUENCY",
+                                "subCategory": "FILLER_UTTERANCES",
+                                "value": [
+                                    {
+                                        "count": 1,
+                                        "word": "uh",
+                                        "positions": [
+                                            {
+                                                "start": 71,
+                                                "end": 72
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "normPercentage": 2.6
+                            },
+                            {
+                                "category": "FLUENCY",
+                                "subCategory": "PAUSES",
+                                "value": 100,
+                                "count": 0
+                            },
+                            {
+                                "category": "FLUENCY",
+                                "subCategory": "DISFLUENCY",
+                                "value": 0,
+                                "normPercentage": 0
+                            },
+                            {
+                                "category": "DELIVERY",
+                                "subCategory": "PACE",
+                                "value": 195
+                            },
+                            {
+                                "category": "DELIVERY",
+                                "subCategory": "ENERGY",
+                                "value": 2
+                            }
+                        ]
+                    },
+                    "content": {
+                        "ratings": {
+                            "SIMILARITY": 20,
+                            "RELEVANCE": 10,
+                            "LOGIC_FLOW": 20,
+                            "OVERALL": 17
+                        },
+                        "features": [
+                            {
+                                "category": "RELEVANCE",
+                                "subCategory": "JARGON_WORDS",
+                                "value": [
+                                    {
+                                        "count": 1,
+                                        "word": "new",
+                                        "positions": [
+                                            {
+                                                "start": 30,
+                                                "end": 32
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "normPercentage": 2.6
+                            }
+                        ]
+                    }
+                }
+            },
+            "answer": "Yeah, it's great to work in a new city. Yeah, I can do that. And yeah, it's, uh, my current availability is so hard. Five hours on weekends and two to three hours on weekdays, so, yeah.",
+            "timeTaken": 12
+        },
+        {
+            "question": "How do you manage your time and priorities when juggling multiple tasks or projects?",
+            "analysis": {
+                "isError": false,
+                "statusCode": 200,
+                "message": "Successfully analysed",
+                "data": {
+                    "communication": {
+                        "ratings": {
+                            "WORD_CHOICE": 66,
+                            "FLUENCY": 96,
+                            "DELIVERY": 59,
+                            "CONFIDENCE": 70,
+                            "OVERALL": 71
+                        },
+                        "features": [
+                            {
+                                "category": "WORD_CHOICE",
+                                "subCategory": "INFORMAL_WORDS",
+                                "value": [
+                                    {
+                                        "count": 1,
+                                        "word": "yeah",
+                                        "positions": [
+                                            {
+                                                "start": 48,
+                                                "end": 51
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "normPercentage": 2.5
+                            },
+                            {
+                                "category": "WORD_CHOICE",
+                                "subCategory": "HINDI_SHARE",
+                                "value": 0
+                            },
+                            {
+                                "category": "WORD_CHOICE",
+                                "subCategory": "RARE_USED_WORDS",
+                                "value": [
+                                    {
+                                        "count": 2,
+                                        "word": "prioritize",
+                                        "positions": [
+                                            {
+                                                "start": 20,
+                                                "end": 29
+                                            },
+                                            {
+                                                "start": 120,
+                                                "end": 129
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "normPercentage": 5
+                            },
+                            {
+                                "category": "FLUENCY",
+                                "subCategory": "FILLER_UTTERANCES",
+                                "value": [
+                                    {
+                                        "count": 1,
+                                        "word": "uh",
+                                        "positions": [
+                                            {
+                                                "start": 15,
+                                                "end": 16
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "normPercentage": 2.5
+                            },
+                            {
+                                "category": "FLUENCY",
+                                "subCategory": "PAUSES",
+                                "value": 92,
+                                "count": 1
+                            },
+                            {
+                                "category": "FLUENCY",
+                                "subCategory": "DISFLUENCY",
+                                "value": 0,
+                                "normPercentage": 0
+                            },
+                            {
+                                "category": "DELIVERY",
+                                "subCategory": "PACE",
+                                "value": 171
+                            },
+                            {
+                                "category": "DELIVERY",
+                                "subCategory": "ENERGY",
+                                "value": 1
+                            }
+                        ]
+                    },
+                    "content": {
+                        "ratings": {
+                            "SIMILARITY": 20,
+                            "RELEVANCE": 10,
+                            "LOGIC_FLOW": 20,
+                            "OVERALL": 17
+                        },
+                        "features": []
+                    }
+                }
+            },
+            "answer": "Prioritizing, uh, I prioritize things and do. So, yeah, when I'm in multiple projects or things, I don't juggle things. I just prioritize what to do first, and I do that first. That makes me better. Thank you.",
+            "timeTaken": 14
+        }
+    ],
+    "interviewType": "personalized",
+    "overallAnalysis": {
+        "count": 8,
+        "communication": {
+            "ratings": {
+                "OVERALL": 75.875,
+                "WORD_CHOICE": 66.374,
+                "FLUENCY": 90.875,
+                "DELIVERY": 76.25,
+                "CONFIDENCE": 77.625
+            },
+            "features": [
+                {
+                    "category": "WORD_CHOICE",
+                    "subCategory": "INFORMAL_WORDS",
+                    "value": [
+                        {
+                            "count": 2,
+                            "word": "yeah",
+                            "positions": [
+                                {
+                                    "start": 37,
+                                    "end": 40
+                                },
+                                {
+                                    "start": 690,
+                                    "end": 693
+                                }
+                            ]
+                        }
+                    ],
+                    "normPercentage": 1.4
+                },
+                {
+                    "category": "WORD_CHOICE",
+                    "subCategory": "HINDI_SHARE",
+                    "value": 0
+                },
+                {
+                    "category": "WORD_CHOICE",
+                    "subCategory": "RARE_USED_WORDS",
+                    "value": [
+                        {
+                            "count": 1,
+                            "word": "standard",
+                            "positions": [
+                                {
+                                    "start": 223,
+                                    "end": 230
+                                }
+                            ]
+                        },
+                        {
+                            "count": 1,
+                            "word": "level",
+                            "positions": [
+                                {
+                                    "start": 667,
+                                    "end": 671
+                                }
+                            ]
+                        },
+                        {
+                            "count": 1,
+                            "word": "close",
+                            "positions": [
+                                {
+                                    "start": 427,
+                                    "end": 431
+                                }
+                            ]
+                        }
+                    ],
+                    "normPercentage": 2.1
+                },
+                {
+                    "category": "FLUENCY",
+                    "subCategory": "FILLER_PHRASES",
+                    "value": [
+                        {
+                            "count": 6,
+                            "word": "i think",
+                            "positions": [
+                                {
+                                    "start": 143,
+                                    "end": 149
+                                },
+                                {
+                                    "start": 235,
+                                    "end": 241
+                                },
+                                {
+                                    "start": 341,
+                                    "end": 347
+                                },
+                                {
+                                    "start": 460,
+                                    "end": 466
+                                },
+                                {
+                                    "start": 507,
+                                    "end": 513
+                                },
+                                {
+                                    "start": 623,
+                                    "end": 629
+                                }
+                            ]
+                        }
+                    ],
+                    "normPercentage": 4.1
+                },
+                {
+                    "category": "FLUENCY",
+                    "subCategory": "FILLER_UTTERANCES",
+                    "value": [
+                        {
+                            "count": 6,
+                            "word": "um",
+                            "positions": [
+                                {
+                                    "start": 16,
+                                    "end": 17
+                                },
+                                {
+                                    "start": 50,
+                                    "end": 51
+                                },
+                                {
+                                    "start": 89,
+                                    "end": 90
+                                },
+                                {
+                                    "start": 207,
+                                    "end": 208
+                                },
+                                {
+                                    "start": 386,
+                                    "end": 387
+                                },
+                                {
+                                    "start": 424,
+                                    "end": 425
+                                }
+                            ]
+                        },
+                        {
+                            "count": 6,
+                            "word": "uh",
+                            "positions": [
+                                {
+                                    "start": 155,
+                                    "end": 156
+                                },
+                                {
+                                    "start": 308,
+                                    "end": 309
+                                },
+                                {
+                                    "start": 338,
+                                    "end": 339
+                                },
+                                {
+                                    "start": 543,
+                                    "end": 544
+                                },
+                                {
+                                    "start": 560,
+                                    "end": 561
+                                },
+                                {
+                                    "start": 601,
+                                    "end": 602
+                                }
+                            ]
+                        }
+                    ],
+                    "normPercentage": 8.3
+                },
+                {
+                    "category": "FLUENCY",
+                    "subCategory": "PAUSES",
+                    "value": 51,
+                    "count": 16
+                },
+                {
+                    "category": "FLUENCY",
+                    "subCategory": "DISFLUENCY",
+                    "value": 5,
+                    "normPercentage": 3.4
+                },
+                {
+                    "category": "DELIVERY",
+                    "subCategory": "PACE",
+                    "value": 130
+                },
+                {
+                    "category": "DELIVERY",
+                    "subCategory": "ENERGY",
+                    "value": 2
+                },
+                {
+                    "category": "WORD_CHOICE",
+                    "subCategory": "INFORMAL_WORDS",
+                    "value": [
+                        {
+                            "count": 1,
+                            "word": "yeah",
+                            "positions": [
+                                {
+                                    "start": 286,
+                                    "end": 289
+                                }
+                            ]
+                        }
+                    ],
+                    "normPercentage": 1.5
+                },
+                {
+                    "category": "WORD_CHOICE",
+                    "subCategory": "HINDI_SHARE",
+                    "value": 0
+                },
+                {
+                    "category": "FLUENCY",
+                    "subCategory": "FILLER_PHRASES",
+                    "value": [
+                        {
+                            "count": 3,
+                            "word": "i think",
+                            "positions": [
+                                {
+                                    "start": 2,
+                                    "end": 8
+                                },
+                                {
+                                    "start": 40,
+                                    "end": 46
+                                },
+                                {
+                                    "start": 291,
+                                    "end": 297
+                                }
+                            ]
+                        }
+                    ],
+                    "normPercentage": 4.4
+                },
+                {
+                    "category": "FLUENCY",
+                    "subCategory": "FILLER_UTTERANCES",
+                    "value": [
+                        {
+                            "count": 1,
+                            "word": "um",
+                            "positions": [
+                                {
+                                    "start": 10,
+                                    "end": 11
+                                }
+                            ]
+                        }
+                    ],
+                    "normPercentage": 1.5
+                },
+                {
+                    "category": "FLUENCY",
+                    "subCategory": "PAUSES",
+                    "value": 85,
+                    "count": 3
+                },
+                {
+                    "category": "FLUENCY",
+                    "subCategory": "DISFLUENCY",
+                    "value": 1,
+                    "normPercentage": 1.5
+                },
+                {
+                    "category": "DELIVERY",
+                    "subCategory": "PACE",
+                    "value": 146
+                },
+                {
+                    "category": "DELIVERY",
+                    "subCategory": "ENERGY",
+                    "value": 1
+                },
+                {
+                    "category": "WORD_CHOICE",
+                    "subCategory": "INFORMAL_WORDS",
+                    "value": [
+                        {
+                            "count": 3,
+                            "word": "yeah",
+                            "positions": [
+                                {
+                                    "start": 2,
+                                    "end": 5
+                                },
+                                {
+                                    "start": 295,
+                                    "end": 298
+                                },
+                                {
+                                    "start": 353,
+                                    "end": 356
+                                }
+                            ]
+                        }
+                    ],
+                    "normPercentage": 4
+                },
+                {
+                    "category": "WORD_CHOICE",
+                    "subCategory": "HINDI_SHARE",
+                    "value": 0
+                },
+                {
+                    "category": "WORD_CHOICE",
+                    "subCategory": "RARE_USED_WORDS",
+                    "value": [
+                        {
+                            "count": 1,
+                            "word": "role",
+                            "positions": [
+                                {
+                                    "start": 345,
+                                    "end": 348
+                                }
+                            ]
+                        },
+                        {
+                            "count": 1,
+                            "word": "close",
+                            "positions": [
+                                {
+                                    "start": 272,
+                                    "end": 276
+                                }
+                            ]
+                        }
+                    ],
+                    "normPercentage": 2.7
+                },
+                {
+                    "category": "FLUENCY",
+                    "subCategory": "FILLER_WORDS",
+                    "value": [
+                        {
+                            "count": 3,
+                            "word": "yeah",
+                            "positions": [
+                                {
+                                    "start": 2,
+                                    "end": 5
+                                },
+                                {
+                                    "start": 295,
+                                    "end": 298
+                                },
+                                {
+                                    "start": 353,
+                                    "end": 356
+                                }
+                            ]
+                        }
+                    ],
+                    "normPercentage": 4
+                },
+                {
+                    "category": "FLUENCY",
+                    "subCategory": "PAUSES",
+                    "value": 91,
+                    "count": 2
+                },
+                {
+                    "category": "FLUENCY",
+                    "subCategory": "DISFLUENCY",
+                    "value": 0,
+                    "normPercentage": 0
+                },
+                {
+                    "category": "DELIVERY",
+                    "subCategory": "PACE",
+                    "value": 167
+                },
+                {
+                    "category": "DELIVERY",
+                    "subCategory": "ENERGY",
+                    "value": 2
+                },
+                {
+                    "category": "WORD_CHOICE",
+                    "subCategory": "INFORMAL_WORDS",
+                    "value": [
+                        {
+                            "count": 3,
+                            "word": "yeah",
+                            "positions": [
+                                {
+                                    "start": 314,
+                                    "end": 317
+                                },
+                                {
+                                    "start": 323,
+                                    "end": 326
+                                },
+                                {
+                                    "start": 505,
+                                    "end": 508
+                                }
+                            ]
+                        }
+                    ],
+                    "normPercentage": 2.3
+                },
+                {
+                    "category": "WORD_CHOICE",
+                    "subCategory": "HINDI_SHARE",
+                    "value": 0
+                },
+                {
+                    "category": "FLUENCY",
+                    "subCategory": "FILLER_UTTERANCES",
+                    "value": [
+                        {
+                            "count": 3,
+                            "word": "um",
+                            "positions": [
+                                {
+                                    "start": 2,
+                                    "end": 3
+                                },
+                                {
+                                    "start": 26,
+                                    "end": 27
+                                },
+                                {
+                                    "start": 599,
+                                    "end": 600
+                                }
+                            ]
+                        },
+                        {
+                            "count": 4,
+                            "word": "uh",
+                            "positions": [
+                                {
+                                    "start": 40,
+                                    "end": 41
+                                },
+                                {
+                                    "start": 273,
+                                    "end": 274
+                                },
+                                {
+                                    "start": 290,
+                                    "end": 291
+                                },
+                                {
+                                    "start": 430,
+                                    "end": 431
+                                }
+                            ]
+                        },
+                        {
+                            "count": 1,
+                            "word": "hmm",
+                            "positions": [
+                                {
+                                    "start": 319,
+                                    "end": 321
+                                }
+                            ]
+                        }
+                    ],
+                    "normPercentage": 6.2
+                },
+                {
+                    "category": "FLUENCY",
+                    "subCategory": "PAUSES",
+                    "value": 78,
+                    "count": 8
+                },
+                {
+                    "category": "FLUENCY",
+                    "subCategory": "DISFLUENCY",
+                    "value": 1,
+                    "normPercentage": 0.8
+                },
+                {
+                    "category": "DELIVERY",
+                    "subCategory": "PACE",
+                    "value": 155
+                },
+                {
+                    "category": "DELIVERY",
+                    "subCategory": "ENERGY",
+                    "value": 2
+                },
+                {
+                    "category": "WORD_CHOICE",
+                    "subCategory": "INFORMAL_WORDS",
+                    "value": [
+                        {
+                            "count": 1,
+                            "word": "yeah",
+                            "positions": [
+                                {
+                                    "start": 573,
+                                    "end": 576
+                                }
+                            ]
+                        }
+                    ],
+                    "normPercentage": 0.9
+                },
+                {
+                    "category": "WORD_CHOICE",
+                    "subCategory": "HINDI_SHARE",
+                    "value": 0
+                },
+                {
+                    "category": "FLUENCY",
+                    "subCategory": "FILLER_PHRASES",
+                    "value": [
+                        {
+                            "count": 4,
+                            "word": "i think",
+                            "positions": [
+                                {
+                                    "start": 7,
+                                    "end": 13
+                                },
+                                {
+                                    "start": 49,
+                                    "end": 55
+                                },
+                                {
+                                    "start": 196,
+                                    "end": 202
+                                },
+                                {
+                                    "start": 455,
+                                    "end": 461
+                                }
+                            ]
+                        }
+                    ],
+                    "normPercentage": 3.6
+                },
+                {
+                    "category": "FLUENCY",
+                    "subCategory": "FILLER_UTTERANCES",
+                    "value": [
+                        {
+                            "count": 2,
+                            "word": "uh",
+                            "positions": [
+                                {
+                                    "start": 43,
+                                    "end": 44
+                                },
+                                {
+                                    "start": 204,
+                                    "end": 205
+                                }
+                            ]
+                        },
+                        {
+                            "count": 2,
+                            "word": "um",
+                            "positions": [
+                                {
+                                    "start": 46,
+                                    "end": 47
+                                },
+                                {
+                                    "start": 322,
+                                    "end": 323
+                                }
+                            ]
+                        }
+                    ],
+                    "normPercentage": 3.6
+                },
+                {
+                    "category": "FLUENCY",
+                    "subCategory": "PAUSES",
+                    "value": 69,
+                    "count": 10
+                },
+                {
+                    "category": "FLUENCY",
+                    "subCategory": "DISFLUENCY",
+                    "value": 2,
+                    "normPercentage": 1.8
+                },
+                {
+                    "category": "DELIVERY",
+                    "subCategory": "PACE",
+                    "value": 148
+                },
+                {
+                    "category": "DELIVERY",
+                    "subCategory": "ENERGY",
+                    "value": 1
+                },
+                {
+                    "category": "WORD_CHOICE",
+                    "subCategory": "HINDI_SHARE",
+                    "value": 0
+                },
+                {
+                    "category": "WORD_CHOICE",
+                    "subCategory": "RARE_USED_WORDS",
+                    "value": [
+                        {
+                            "count": 3,
+                            "word": "meet",
+                            "positions": [
+                                {
+                                    "start": 228,
+                                    "end": 231
+                                },
+                                {
+                                    "start": 245,
+                                    "end": 248
+                                },
+                                {
+                                    "start": 358,
+                                    "end": 361
+                                }
+                            ]
+                        }
+                    ],
+                    "normPercentage": 2.8
+                },
+                {
+                    "category": "FLUENCY",
+                    "subCategory": "FILLER_UTTERANCES",
+                    "value": [
+                        {
+                            "count": 2,
+                            "word": "uh",
+                            "positions": [
+                                {
+                                    "start": 233,
+                                    "end": 234
+                                },
+                                {
+                                    "start": 305,
+                                    "end": 306
+                                }
+                            ]
+                        },
+                        {
+                            "count": 1,
+                            "word": "um",
+                            "positions": [
+                                {
+                                    "start": 111,
+                                    "end": 112
+                                }
+                            ]
+                        }
+                    ],
+                    "normPercentage": 2.8
+                },
+                {
+                    "category": "FLUENCY",
+                    "subCategory": "PAUSES",
+                    "value": 72,
+                    "count": 7
+                },
+                {
+                    "category": "FLUENCY",
+                    "subCategory": "DISFLUENCY",
+                    "value": 1,
+                    "normPercentage": 0.9
+                },
+                {
+                    "category": "DELIVERY",
+                    "subCategory": "PACE",
+                    "value": 133
+                },
+                {
+                    "category": "DELIVERY",
+                    "subCategory": "ENERGY",
+                    "value": 2
+                },
+                {
+                    "category": "WORD_CHOICE",
+                    "subCategory": "INFORMAL_WORDS",
+                    "value": [
+                        {
+                            "count": 4,
+                            "word": "yeah",
+                            "positions": [
+                                {
+                                    "start": 2,
+                                    "end": 5
+                                },
+                                {
+                                    "start": 39,
+                                    "end": 42
+                                },
+                                {
+                                    "start": 62,
+                                    "end": 65
+                                },
+                                {
+                                    "start": 170,
+                                    "end": 173
+                                }
+                            ]
+                        }
+                    ],
+                    "normPercentage": 10.3
+                },
+                {
+                    "category": "WORD_CHOICE",
+                    "subCategory": "HINDI_SHARE",
+                    "value": 0
+                },
+                {
+                    "category": "WORD_CHOICE",
+                    "subCategory": "RARE_USED_WORDS",
+                    "value": [
+                        {
+                            "count": 1,
+                            "word": "current",
+                            "positions": [
+                                {
+                                    "start": 77,
+                                    "end": 83
+                                }
+                            ]
+                        }
+                    ],
+                    "normPercentage": 2.6
+                },
+                {
+                    "category": "FLUENCY",
+                    "subCategory": "FILLER_WORDS",
+                    "value": [
+                        {
+                            "count": 4,
+                            "word": "yeah",
+                            "positions": [
+                                {
+                                    "start": 2,
+                                    "end": 5
+                                },
+                                {
+                                    "start": 39,
+                                    "end": 42
+                                },
+                                {
+                                    "start": 62,
+                                    "end": 65
+                                },
+                                {
+                                    "start": 170,
+                                    "end": 173
+                                }
+                            ]
+                        }
+                    ],
+                    "normPercentage": 10.3
+                },
+                {
+                    "category": "FLUENCY",
+                    "subCategory": "FILLER_UTTERANCES",
+                    "value": [
+                        {
+                            "count": 1,
+                            "word": "uh",
+                            "positions": [
+                                {
+                                    "start": 71,
+                                    "end": 72
+                                }
+                            ]
+                        }
+                    ],
+                    "normPercentage": 2.6
+                },
+                {
+                    "category": "FLUENCY",
+                    "subCategory": "PAUSES",
+                    "value": 100,
+                    "count": 0
+                },
+                {
+                    "category": "FLUENCY",
+                    "subCategory": "DISFLUENCY",
+                    "value": 0,
+                    "normPercentage": 0
+                },
+                {
+                    "category": "DELIVERY",
+                    "subCategory": "PACE",
+                    "value": 195
+                },
+                {
+                    "category": "DELIVERY",
+                    "subCategory": "ENERGY",
+                    "value": 2
+                },
+                {
+                    "category": "WORD_CHOICE",
+                    "subCategory": "INFORMAL_WORDS",
+                    "value": [
+                        {
+                            "count": 1,
+                            "word": "yeah",
+                            "positions": [
+                                {
+                                    "start": 48,
+                                    "end": 51
+                                }
+                            ]
+                        }
+                    ],
+                    "normPercentage": 2.5
+                },
+                {
+                    "category": "WORD_CHOICE",
+                    "subCategory": "HINDI_SHARE",
+                    "value": 0
+                },
+                {
+                    "category": "WORD_CHOICE",
+                    "subCategory": "RARE_USED_WORDS",
+                    "value": [
+                        {
+                            "count": 2,
+                            "word": "prioritize",
+                            "positions": [
+                                {
+                                    "start": 20,
+                                    "end": 29
+                                },
+                                {
+                                    "start": 120,
+                                    "end": 129
+                                }
+                            ]
+                        }
+                    ],
+                    "normPercentage": 5
+                },
+                {
+                    "category": "FLUENCY",
+                    "subCategory": "FILLER_UTTERANCES",
+                    "value": [
+                        {
+                            "count": 1,
+                            "word": "uh",
+                            "positions": [
+                                {
+                                    "start": 15,
+                                    "end": 16
+                                }
+                            ]
+                        }
+                    ],
+                    "normPercentage": 2.5
+                },
+                {
+                    "category": "FLUENCY",
+                    "subCategory": "PAUSES",
+                    "value": 92,
+                    "count": 1
+                },
+                {
+                    "category": "FLUENCY",
+                    "subCategory": "DISFLUENCY",
+                    "value": 0,
+                    "normPercentage": 0
+                },
+                {
+                    "category": "DELIVERY",
+                    "subCategory": "PACE",
+                    "value": 171
+                },
+                {
+                    "category": "DELIVERY",
+                    "subCategory": "ENERGY",
+                    "value": 1
+                }
+            ]
+        },
+        "content": {
+            "ratings": {
+                "OVERALL": 32.89,
+                "SIMILARITY": 28.888,
+                "RELEVANCE": 37.777,
+                "LOGIC_FLOW": 32.221
+            },
+            "features": []
+        }
+    },
+    "startedAt": "2025-03-16T08:56:39.990Z",
+    "finishedAt": "1970-01-20T19:54:18.291Z",
+    "timeout": false,
+    "proctoringRecords": [
+     {
+      "type": "GENERAL_PROCTOR",
+      "moveAwayCount": 1,
+      "tabSwitchCount": 2
+     }
+    ],
+    "totalQuestions": 9,
+    "questionsAttempted": 8
+}

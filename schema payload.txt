@@ -1,0 +1,250 @@
+// schema.ts
+import { 
+  pgTable, 
+  uuid, 
+  varchar, 
+  text, 
+  timestamp, 
+  boolean, 
+  integer, 
+  decimal, 
+  jsonb,
+  primaryKey,
+  index
+} from 'drizzle-orm/pg-core';
+import { relations } from 'drizzle-orm';
+
+// Main assessment table
+export const assessments = pgTable('assessments', {
+  id: uuid('id').defaultRandom().primaryKey(),
+  user: varchar('user', { length: 255 }).notNull(), // email
+  attemptId: varchar('attempt_id', { length: 255 }).notNull().unique(),
+  assessmentId: varchar('assessment_id', { length: 255 }).notNull(),
+  interviewType: varchar('interview_type', { length: 100 }).notNull(),
+  startedAt: timestamp('started_at').notNull(),
+  finishedAt: timestamp('finished_at').notNull(),
+  timeout: boolean('timeout').notNull().default(false),
+  totalQuestions: integer('total_questions').notNull(),
+  questionsAttempted: integer('questions_attempted').notNull(),
+  
+  // Overall analysis ratings
+  overallCommunicationRating: decimal('overall_communication_rating', { precision: 5, scale: 3 }),
+  overallContentRating: decimal('overall_content_rating', { precision: 5, scale: 3 }),
+  wordChoiceRating: decimal('word_choice_rating', { precision: 5, scale: 3 }),
+  fluencyRating: decimal('fluency_rating', { precision: 5, scale: 3 }),
+  deliveryRating: decimal('delivery_rating', { precision: 5, scale: 3 }),
+  confidenceRating: decimal('confidence_rating', { precision: 5, scale: 3 }),
+  similarityRating: decimal('similarity_rating', { precision: 5, scale: 3 }),
+  relevanceRating: decimal('relevance_rating', { precision: 5, scale: 3 }),
+  logicFlowRating: decimal('logic_flow_rating', { precision: 5, scale: 3 }),
+  
+  // Store raw overall analysis features as JSONB for flexibility
+  overallAnalysisFeatures: jsonb('overall_analysis_features'),
+  
+  createdAt: timestamp('created_at').defaultNow().notNull(),
+  updatedAt: timestamp('updated_at').defaultNow().notNull(),
+}, (table) => ({
+  userIdx: index('user_idx').on(table.user),
+  assessmentIdIdx: index('assessment_id_idx').on(table.assessmentId),
+  startedAtIdx: index('started_at_idx').on(table.startedAt),
+}));
+
+// Questions and answers
+export const questionResponses = pgTable('question_responses', {
+  id: uuid('id').defaultRandom().primaryKey(),
+  assessmentId: uuid('assessment_id').notNull().references(() => assessments.id, { onDelete: 'cascade' }),
+  questionOrder: integer('question_order').notNull(),
+  question: text('question').notNull(),
+  answer: text('answer').notNull(),
+  timeTaken: integer('time_taken').notNull(), // in seconds
+  
+  // Analysis status
+  analysisError: boolean('analysis_error').notNull().default(false),
+  analysisStatusCode: integer('analysis_status_code'),
+  analysisMessage: text('analysis_message'),
+  
+  // Communication ratings
+  communicationOverall: decimal('communication_overall', { precision: 5, scale: 3 }),
+  wordChoice: decimal('word_choice', { precision: 5, scale: 3 }),
+  fluency: decimal('fluency', { precision: 5, scale: 3 }),
+  delivery: decimal('delivery', { precision: 5, scale: 3 }),
+  confidence: decimal('confidence', { precision: 5, scale: 3 }),
+  
+  // Content ratings
+  contentOverall: decimal('content_overall', { precision: 5, scale: 3 }),
+  similarity: decimal('similarity', { precision: 5, scale: 3 }),
+  relevance: decimal('relevance', { precision: 5, scale: 3 }),
+  logicFlow: decimal('logic_flow', { precision: 5, scale: 3 }),
+  
+  createdAt: timestamp('created_at').defaultNow().notNull(),
+}, (table) => ({
+  assessmentQuestionIdx: index('assessment_question_idx').on(table.assessmentId, table.questionOrder),
+}));
+
+// Communication features (filler words, pauses, etc.)
+export const communicationFeatures = pgTable('communication_features', {
+  id: uuid('id').defaultRandom().primaryKey(),
+  questionResponseId: uuid('question_response_id').notNull().references(() => questionResponses.id, { onDelete: 'cascade' }),
+  category: varchar('category', { length: 100 }).notNull(), // WORD_CHOICE, FLUENCY, DELIVERY
+  subCategory: varchar('sub_category', { length: 100 }).notNull(), // INFORMAL_WORDS, FILLER_PHRASES, etc.
+  value: jsonb('value'), // Store the actual data (words, counts, positions)
+  normPercentage: decimal('norm_percentage', { precision: 5, scale: 2 }),
+  count: integer('count'),
+});
+
+// Content features (jargon words, etc.)
+export const contentFeatures = pgTable('content_features', {
+  id: uuid('id').defaultRandom().primaryKey(),
+  questionResponseId: uuid('question_response_id').notNull().references(() => questionResponses.id, { onDelete: 'cascade' }),
+  category: varchar('category', { length: 100 }).notNull(), // RELEVANCE, etc.
+  subCategory: varchar('sub_category', { length: 100 }).notNull(), // JARGON_WORDS, etc.
+  value: jsonb('value'), // Store the actual data
+  normPercentage: decimal('norm_percentage', { precision: 5, scale: 2 }),
+});
+
+// Proctoring records
+export const proctoringRecords = pgTable('proctoring_records', {
+  id: uuid('id').defaultRandom().primaryKey(),
+  assessmentId: uuid('assessment_id').notNull().references(() => assessments.id, { onDelete: 'cascade' }),
+  type: varchar('type', { length: 100 }).notNull(), // GENERAL_PROCTOR, etc.
+  moveAwayCount: integer('move_away_count').default(0),
+  tabSwitchCount: integer('tab_switch_count').default(0),
+  // Add other proctoring fields as needed
+  additionalData: jsonb('additional_data'), // For future proctoring features
+});
+
+// Define relations
+export const assessmentsRelations = relations(assessments, ({ many }) => ({
+  questionResponses: many(questionResponses),
+  proctoringRecords: many(proctoringRecords),
+}));
+
+export const questionResponsesRelations = relations(questionResponses, ({ one, many }) => ({
+  assessment: one(assessments, {
+    fields: [questionResponses.assessmentId],
+    references: [assessments.id],
+  }),
+  communicationFeatures: many(communicationFeatures),
+  contentFeatures: many(contentFeatures),
+}));
+
+export const communicationFeaturesRelations = relations(communicationFeatures, ({ one }) => ({
+  questionResponse: one(questionResponses, {
+    fields: [communicationFeatures.questionResponseId],
+    references: [questionResponses.id],
+  }),
+}));
+
+export const contentFeaturesRelations = relations(contentFeatures, ({ one }) => ({
+  questionResponse: one(questionResponses, {
+    fields: [contentFeatures.questionResponseId],
+    references: [questionResponses.id],
+  }),
+}));
+
+export const proctoringRecordsRelations = relations(proctoringRecords, ({ one }) => ({
+  assessment: one(assessments, {
+    fields: [proctoringRecords.assessmentId],
+    references: [assessments.id],
+  }),
+}));
+
+// Types for better TypeScript support
+export type Assessment = typeof assessments.$inferSelect;
+export type NewAssessment = typeof assessments.$inferInsert;
+export type QuestionResponse = typeof questionResponses.$inferSelect;
+export type NewQuestionResponse = typeof questionResponses.$inferInsert;
+export type CommunicationFeature = typeof communicationFeatures.$inferSelect;
+export type NewCommunicationFeature = typeof communicationFeatures.$inferInsert;
+export type ContentFeature = typeof contentFeatures.$inferSelect;
+export type NewContentFeature = typeof contentFeatures.$inferInsert;
+export type ProctoringRecord = typeof proctoringRecords.$inferSelect;
+export type NewProctoringRecord = typeof proctoringRecords.$inferInsert;
+
+// Webhook payload types (for reference)
+export interface LanguifyWebhookPayload {
+  user: string;
+  attemptId: string;
+  assessmentId: string;
+  questionWiseAnalysis: Array<{
+    question: string;
+    analysis: {
+      isError: boolean;
+      statusCode: number;
+      message: string;
+      data: {
+        communication: {
+          ratings: {
+            WORD_CHOICE: number;
+            FLUENCY: number;
+            DELIVERY: number;
+            CONFIDENCE: number;
+            OVERALL: number;
+          };
+          features: Array<{
+            category: string;
+            subCategory: string;
+            value: any;
+            normPercentage?: number;
+            count?: number;
+          }>;
+        };
+        content: {
+          ratings: {
+            SIMILARITY: number;
+            RELEVANCE: number;
+            LOGIC_FLOW: number;
+            OVERALL: number;
+          };
+          features: Array<{
+            category: string;
+            subCategory: string;
+            value: any;
+            normPercentage?: number;
+          }>;
+        };
+      };
+    };
+    answer: string;
+    timeTaken: number;
+  }>;
+  interviewType: string;
+  overallAnalysis: {
+    count: number;
+    communication: {
+      ratings: {
+        OVERALL: number;
+        WORD_CHOICE: number;
+        FLUENCY: number;
+        DELIVERY: number;
+        CONFIDENCE: number;
+      };
+      features: Array<{
+        category: string;
+        subCategory: string;
+        value: any;
+        normPercentage?: number;
+        count?: number;
+      }>;
+    };
+    content: {
+      ratings: {
+        OVERALL: number;
+        SIMILARITY: number;
+        RELEVANCE: number;
+        LOGIC_FLOW: number;
+      };
+      features: any[];
+    };
+  };
+  startedAt: string;
+  finishedAt: string;
+  timeout: boolean;
+  proctoringRecords: Array<{
+    type: string;
+    moveAwayCount?: number;
+    tabSwitchCount?: number;
+  }>;
+  totalQuestions: number;
+  questionsAttempted: number;
+}
