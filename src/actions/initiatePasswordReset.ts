@@ -28,7 +28,7 @@ export async function initiatePasswordReset(
     const url = `${resetPasswordUrl}?token=${passwordResetToken.token}`;
 
     await sendEmail(
-      "Nextjs Auth",
+      "AI Sathi",
       passwordResetToken.email,
       "Reset your password",
       `<p>Click <a href="${url}">here</a> to reset your password.</p>`

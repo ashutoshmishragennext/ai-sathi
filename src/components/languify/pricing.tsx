@@ -193,8 +193,7 @@ export default function InterviewPrepPricing() {
             const verificationData = await verificationResponse.json();
 
             if (verificationResponse.ok && verificationData.success) {
-              alert('Payment successful and access granted!');
-              router.push(verificationData.data.redirectUrl);
+              window.open('/Interview-Prep-Dashboard', '_blank')
             } else {
               alert(`Payment verification failed: ${verificationData.error || 'Unknown error'}`);
             }
@@ -247,7 +246,7 @@ export default function InterviewPrepPricing() {
             It looks like your account already has a valid subscription. You can head straight to the platform and continue your interview preparation.
           </p>
           <button
-  onClick={() => window.open('https://staging-interview.languify.in', '_blank')}
+  onClick={() => window.open('/Interview-Prep-Dashboard', '_blank')}
   className="w-full py-3 px-6 rounded-lg font-bold text-lg bg-purple-600 hover:bg-purple-700 text-white transition-colors flex items-center justify-center"
 >
   Go to Preparation Dashboard <ArrowRight className="ml-2 w-5 h-5" />
