@@ -57,7 +57,7 @@ interface EducationTabProps {
   onNext?: () => void;
   formData: EducationItem[];
   updateFormData: (data: EducationItem[]) => void;
-  selectedTemplate: React.ReactElement<TemplateProps>;
+  selectedTemplate?: React.ReactElement<TemplateProps>;
   fullFormData: FormData;
 }
 
@@ -153,24 +153,24 @@ const EducationTab: React.FC<EducationTabProps> = (props) => {
     }
   };
 
-  const renderTemplate = () => {
-    if (selectedTemplate && React.isValidElement(selectedTemplate)) {
-      return React.cloneElement(selectedTemplate, { 
-        formData: { 
-          heading: fullFormData?.heading || {}, 
-          education: educations, 
-          experience: fullFormData?.experience || [], 
-          skills: fullFormData?.skills || [], 
-          summary: fullFormData?.summary || '' 
-        } 
-      });
-    }
-    return (
-      <div className="w-full h-full flex items-center justify-center text-6xl">
-        <span role="img" aria-label="resume">📄</span>
-      </div>
-    );
-  };
+  // const renderTemplate = () => {
+  //   if (selectedTemplate && React.isValidElement(selectedTemplate)) {
+  //     return React.cloneElement(selectedTemplate, { 
+  //       formData: { 
+  //         heading: fullFormData?.heading || {}, 
+  //         education: educations, 
+  //         experience: fullFormData?.experience || [], 
+  //         skills: fullFormData?.skills || [], 
+  //         summary: fullFormData?.summary || '' 
+  //       } 
+  //     });
+  //   }
+  //   return (
+  //     <div className="w-full h-full flex items-center justify-center text-6xl">
+  //       <span role="img" aria-label="resume">📄</span>
+  //     </div>
+  //   );
+  // };
 
   return (
     <div className="max-w-7xl mx-auto p-6 w-full box-border">
@@ -456,11 +456,7 @@ const EducationTab: React.FC<EducationTabProps> = (props) => {
         </div>
 
         {/* Right Template Preview */}
-        {!isMobile && (
-          <div className="flex-1 overflow-auto rounded-xl border bg-white shadow-sm p-4">
-            {renderTemplate()}
-          </div>
-        )}
+       
       </div>
     </div>
   );

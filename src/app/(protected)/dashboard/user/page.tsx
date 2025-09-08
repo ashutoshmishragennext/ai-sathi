@@ -1,4 +1,5 @@
 import FirstPage from '@/components/firstpage'
+import HomePage from '@/components/HomePage'
 import Navbar from '@/components/NavbarLogout'
 import React from 'react'
 
@@ -7,7 +8,9 @@ export default function page () {
     <div>
       <Navbar/>
       <div className=' relative'>
-      <FirstPage />
+      <HomePage/>
+      {/* <FirstPage /> */}
+
       </div>
     </div>
   )

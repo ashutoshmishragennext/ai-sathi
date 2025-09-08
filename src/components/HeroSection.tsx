@@ -38,7 +38,7 @@ export default function Hero() {
               href="/resumebuilder"
               className="text-sm px-6 py-3 rounded-md bg-gradient-to-r from-purple-500 to-purple-700 text-white hover:from-purple-700 hover:to-purple-900 hover:scale-105 hover:shadow-md transition-all duration-200 text-center"
             >
-              Start Building Now
+              CV let&apos;s build from here 
             </Link>
 
             {/* <Link
@@ -52,7 +52,7 @@ export default function Hero() {
               href="/interview-prep"
               className="text-sm px-6 py-3 rounded-md bg-gradient-to-r from-purple-600 to-purple-800 text-white hover:from-purple-700 hover:to-purple-900 hover:scale-105 hover:shadow-md transition-all duration-200 text-center"
             >
-              👉 Start Preparing Now
+              Mock Interview start from here
             </Link>
           </div>
         </div>

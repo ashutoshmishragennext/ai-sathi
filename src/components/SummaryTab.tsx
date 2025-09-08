@@ -228,26 +228,26 @@ const SummaryTab: React.FC<SummaryTabProps> = (props) => {
     }
   };
 
-  const renderTemplate = () => {
-    if (selectedTemplate && React.isValidElement(selectedTemplate)) {
-      return React.cloneElement(selectedTemplate, {
-        formData: {
-          heading: fullFormData?.heading || {},
-          education: fullFormData?.education || [],
-          experience: fullFormData?.experience || [],
-          skills: fullFormData?.skills || [],
-          summary: summary,
-        },
-      });
-    }
-    return (
-      <div className="w-full h-full flex items-center justify-center text-6xl">
-        <span role="img" aria-label="resume">
-          📄
-        </span>
-      </div>
-    );
-  };
+  // const renderTemplate = () => {
+  //   if (selectedTemplate && React.isValidElement(selectedTemplate)) {
+  //     return React.cloneElement(selectedTemplate, {
+  //       formData: {
+  //         heading: fullFormData?.heading || {},
+  //         education: fullFormData?.education || [],
+  //         experience: fullFormData?.experience || [],
+  //         skills: fullFormData?.skills || [],
+  //         summary: summary,
+  //       },
+  //     });
+  //   }
+  //   return (
+  //     <div className="w-full h-full flex items-center justify-center text-6xl">
+  //       <span role="img" aria-label="resume">
+  //         📄
+  //       </span>
+  //     </div>
+  //   );
+  // };
 
   return (
     <div className="max-w-[1400px] mx-auto w-full p-4 md:p-8 box-border">
@@ -344,11 +344,7 @@ const SummaryTab: React.FC<SummaryTabProps> = (props) => {
         </div>
 
         {/* Right Section - Preview */}
-        {!isMobile && (
-          <div className="flex-1 overflow-auto rounded-xl border bg-white shadow-sm p-4">
-            {renderTemplate()}
-          </div>
-        )}
+       
       </div>
     </div>
   );

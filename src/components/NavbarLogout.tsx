@@ -41,7 +41,6 @@ export default function Navbar() {
             {status === 'loading' ? (
               <div className="animate-pulse bg-gray-200 h-8 w-20 rounded"></div>
             ) : session ? (
-              // Authenticated user menu
               <div className="relative">
                 <button
                   onClick={() => setIsProfileOpen(!isProfileOpen)}
@@ -69,17 +68,9 @@ export default function Navbar() {
                   </svg>
                 </button>
 
-                {/* Dropdown Menu */}
                 {isProfileOpen && (
                   <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50 border">
-                    <Link
-                      href="/profile"
-                      className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-purple-50"
-                      onClick={() => setIsProfileOpen(false)}
-                    >
-                      <Settings className="h-4 w-4 mr-2" />
-                      Profile Settings
-                    </Link>
+                    
                     <button
                       onClick={handleSignOut}
                       className="flex items-center w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-purple-50"
@@ -91,7 +82,6 @@ export default function Navbar() {
                 )}
               </div>
             ) : (
-              // Unauthenticated user buttons
               <Link
                 href="/auth/login"
                 className="text-sm px-4 py-2 rounded-md bg-gradient-to-r from-purple-500 to-purple-600 text-white hover:from-purple-600 hover:to-purple-700 hover:scale-105 hover:shadow-md transition-all duration-200"
@@ -143,11 +133,11 @@ export default function Navbar() {
                 </div>
                 
                 <Link
-                  href="/profile"
+                  href="/dashboard/user"
                   className="block px-3 py-2 text-sm text-gray-600 hover:text-purple-600 hover:bg-purple-50 rounded-md"
                   onClick={() => setIsOpen(false)}
                 >
-                  Profile Settings
+                  Dashboard
                 </Link>
                 <button
                   onClick={handleSignOut}

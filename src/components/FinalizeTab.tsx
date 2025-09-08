@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
+'use client'
 import React, { useState, useRef, useEffect } from "react";
 import html2pdf from "html2pdf.js";
 import Template1 from "./Templates/template1";
@@ -127,7 +128,7 @@ const FinalizeTab: React.FC<FinalizeTabProps> = ({
             updateFormData={updateEducation}
             onNext={handleCloseEdit}
             onGoBack={handleCloseEdit}
-            selectedTemplate={getTemplateComponent()}
+            // selectedTemplate={getTemplateComponent()}
             fullFormData={formData}
           />
         );
@@ -212,7 +213,7 @@ const FinalizeTab: React.FC<FinalizeTabProps> = ({
       </div>
 
       {/* Mobile Download Button */}
-      {isMobile && (
+      {/* {isMobile && (
         <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-4 shadow-lg">
           <button
             type="button"
@@ -222,7 +223,7 @@ const FinalizeTab: React.FC<FinalizeTabProps> = ({
             📥 Download Resume
           </button>
         </div>
-      )}
+      )} */}
     </div>
   );
 };

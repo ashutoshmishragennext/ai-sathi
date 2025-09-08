@@ -351,7 +351,7 @@ const TemplateTab: React.FC<TemplateTabProps> = ({ onUseTemplate }) => {
 
       return (
         <div className={`
-          ${isMobile ? 'w-full h-64' : 'w-[450px] h-[380px]'}
+          ${isMobile ? 'w-full h-64' : 'w-full h-[380px]'}
           flex items-center justify-center overflow-hidden relative border rounded-lg
         `}
           style={{ backgroundColor: templateData.bg }}
@@ -386,7 +386,7 @@ const TemplateTab: React.FC<TemplateTabProps> = ({ onUseTemplate }) => {
   };
 
   return (
-    <div className="w-full min-h-screen bg-transparent pt-8 md:pt-32">
+    <div className="w-full min-h-screen bg-transparent pt-32 md:pt-2">
       <div className={`max-w-[1100px] mx-auto ${isMobile ? 'px-4 -mt-20' : 'px-6'}`}>
         <h1 className={`font-bold text-center text-gray-900 ${isMobile ? 'text-2xl mb-2 leading-5' : 'text-3xl mb-2 leading-10'}`}>
           Best templates for students
@@ -400,19 +400,18 @@ const TemplateTab: React.FC<TemplateTabProps> = ({ onUseTemplate }) => {
             'flex flex-col items-center gap-6 mb-6' : 
             templateRegistry.length <= 2 ? 
               'flex flex-row gap-8 mb-10 justify-center items-start' :
-              'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-10 justify-items-center'
-          }
+  'flex flex-col items-center gap-8 mb-10'          }
         `}>
           {templateRegistry.map((tpl, idx) => (
             <div
               key={idx}
               onClick={() => setSelectedIdx(idx)}
               className={`
-                bg-white rounded-lg shadow-sm cursor-pointer transition-all duration-200 relative
-                ${isMobile ? 'w-full max-w-[400px] h-80' : 'w-[480px] h-[420px]'}
-                flex flex-col items-center overflow-hidden hover:shadow-lg
-                ${selectedIdx === idx ? 'border-4 border-blue-600 shadow-xl' : 'border-4 border-gray-200'}
-              `}
+  bg-white rounded-lg shadow-sm cursor-pointer transition-all duration-200 relative
+  ${isMobile ? 'w-full max-w-[400px] h-80' : 'w-[480px] h-[420px]'}
+  flex flex-col items-center overflow-hidden hover:shadow-lg
+  ${selectedIdx === idx ? 'border-4 border-blue-600 shadow-xl' : 'border-4 border-gray-200'}
+`}
             >
               {/* Preview container */}
               <div className="flex-1 w-full flex items-center justify-center p-4">

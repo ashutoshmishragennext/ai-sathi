@@ -312,26 +312,7 @@ const SkillsTab: React.FC<SkillsTabProps> = ({
     }
   };
 
-  const renderTemplate = () => {
-    if (selectedTemplate && React.isValidElement(selectedTemplate)) {
-      return React.cloneElement(selectedTemplate, {
-        formData: {
-          heading: fullFormData?.heading || {},
-          education: fullFormData?.education || [],
-          experience: fullFormData?.experience || [],
-          skills: skills,
-          summary: fullFormData?.summary || "",
-        },
-      });
-    }
-    return (
-      <div className="w-full h-full flex items-center justify-center text-6xl">
-        <span role="img" aria-label="resume">
-          📄
-        </span>
-      </div>
-    );
-  };
+
 
   return (
     <div className="max-w-7xl mx-auto p-6 w-full box-border">
@@ -456,11 +437,7 @@ const SkillsTab: React.FC<SkillsTabProps> = ({
         </div>
 
         {/* Right Template Preview */}
-        {!isMobile && (
-          <div className="flex-1 overflow-auto rounded-xl border bg-white shadow-sm p-4">
-            {renderTemplate()}
-          </div>
-        )}
+       
       </div>
     </div>
   );

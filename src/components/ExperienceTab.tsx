@@ -110,25 +110,7 @@ const ExperienceTab: React.FC<ExperienceTabProps> = (props) => {
 
   const handleSave = () => { if (onNext) onNext(); };
 
-  const renderTemplate = () => {
-    if (selectedTemplate && React.isValidElement(selectedTemplate)) {
-      return React.cloneElement(selectedTemplate, {
-        formData: {
-          heading: fullFormData?.heading || {},
-          education: fullFormData?.education || [],
-          experience: experiences,
-          skills: fullFormData?.skills || [],
-          summary: fullFormData?.summary || "",
-        },
-      });
-    }
-    return (
-      <div className="w-full h-full flex items-center justify-center text-6xl">
-        <span role="img" aria-label="resume">📄</span>
-      </div>
-    );
-  };
-
+  
   return (
     <div className="max-w-[1400px] mx-auto w-full p-6 md:p-10">
       <div className="flex justify-between items-center mb-6">
@@ -347,11 +329,7 @@ const ExperienceTab: React.FC<ExperienceTabProps> = (props) => {
         </div>
 
         {/* Right - Template Preview */}
-        {!isMobile && (
-          <div className="flex-1 overflow-auto rounded-xl border bg-white shadow-sm p-4">
-            {renderTemplate()}
-          </div>
-        )}
+        
       </div>
     </div>
   );

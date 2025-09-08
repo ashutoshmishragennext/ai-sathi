@@ -494,24 +494,24 @@ const HeadingTab: React.FC<HeadingTabProps> = ({
     if (onNext) onNext();
   };
 
-  const renderTemplate = () => {
-    if (selectedTemplate && React.isValidElement(selectedTemplate)) {
-      return React.cloneElement(selectedTemplate, { 
-        formData: { 
-          heading, 
-          education: fullFormData?.education || [], 
-          experience: fullFormData?.experience || [], 
-          skills: fullFormData?.skills || [], 
-          summary: fullFormData?.summary || '' 
-        } 
-      });
-    }
-    return (
-      <div className="w-full h-full flex items-center justify-center text-6xl">
-        <span role="img" aria-label="resume">📄</span>
-      </div>
-    );
-  };
+  // const renderTemplate = () => {
+  //   if (selectedTemplate && React.isValidElement(selectedTemplate)) {
+  //     return React.cloneElement(selectedTemplate, { 
+  //       formData: { 
+  //         heading, 
+  //         education: fullFormData?.education || [], 
+  //         experience: fullFormData?.experience || [], 
+  //         skills: fullFormData?.skills || [], 
+  //         summary: fullFormData?.summary || '' 
+  //       } 
+  //     });
+  //   }
+  //   return (
+  //     <div className="w-full h-full flex items-center justify-center text-6xl">
+  //       <span role="img" aria-label="resume">📄</span>
+  //     </div>
+  //   );
+  // };
 
   return (
     <div className="max-w-7xl mx-auto px-6 py-8 w-full">
@@ -694,11 +694,11 @@ const HeadingTab: React.FC<HeadingTabProps> = ({
         </div>
 
         {/* Right - Resume Preview */}
-        {!isMobile && (
+        {/* {!isMobile && (
           <div className="flex-1 overflow-auto rounded-xl border bg-white shadow-sm p-4">
             <div className="pt-6">{renderTemplate()}</div>
           </div>
-        )}
+        )} */}
       </div>
     </div>
   );
