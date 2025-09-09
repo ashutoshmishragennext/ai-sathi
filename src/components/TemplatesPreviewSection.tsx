@@ -1,10 +1,130 @@
 'use client';
 
-import { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import Template1 from './Templates/template1';
+import Template2 from './Templates/template2';
+import Template3 from './Templates/template3';
+import Template4 from './Templates/template4';
+// import Template5 from './Templates/template5';
 
-export default function TemplatesPreview() {
+interface TemplateData {
+  color: string;
+  recommended: boolean;
+  accent: string;
+  bg: string;
+  name: string;
+  component: React.ComponentType<any>;
+  category: string;
+}
+
+const templateRegistry: TemplateData[] = [
+  {
+    color: '#2563eb',
+    recommended: true,
+    accent: '#2563eb',
+    bg: '#e0e7ef',
+    name: 'CA',
+    component: Template1,
+    category: 'professional',
+  },
+  {
+    color: '#222',
+    recommended: true,
+    accent: '#222',
+    bg: '#fff',
+    name: 'Marketing',
+    component: Template2,
+    category: 'modern',
+  },
+  {
+    color: '#dc2626',
+    recommended: false,
+    accent: '#dc2626',
+    bg: '#fef2f2',
+    name: 'Design & Creative',
+    component: Template3,
+    category: 'creative',
+  },
+  {
+    color: '#fc3434',        
+    recommended:false,    
+    accent: '#298585ednt-color',    
+    bg: '#background-color',     
+    name: 'Engineering',  
+    component: Template4,        
+    category: 'Medical',  
+  },
+ 
+
+];
+
+const TemplatesPreview = () => {
   const [activeCategory, setActiveCategory] = useState('all');
-  
+  const [isMobile, setIsMobile] = useState(false);
+  const [selectedIdx, setSelectedIdx] = useState(0);
+  const [isAutoScrolling, setIsAutoScrolling] = useState(true);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const scrollInterval = useRef<NodeJS.Timeout | null>(null);
+
+  // Define filteredTemplates before useEffect
+  const filteredTemplates = activeCategory === 'all'
+    ? templateRegistry
+    : templateRegistry.filter((template) => template.category === activeCategory);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // Auto-scroll effect
+  useEffect(() => {
+    if (isAutoScrolling && filteredTemplates.length > 0) {
+      scrollInterval.current = setInterval(() => {
+        setSelectedIdx((prevIdx) => {
+          const newIdx = (prevIdx + 1) % filteredTemplates.length;
+          scrollToTemplate(newIdx);
+          return newIdx;
+        });
+      }, 2000);
+    }
+
+    return () => {
+      if (scrollInterval.current) {
+        clearInterval(scrollInterval.current);
+      }
+    };
+  }, [isAutoScrolling, filteredTemplates.length]);
+
+  const scrollToTemplate = (index: number) => {
+    if (scrollContainerRef.current) {
+      const container = scrollContainerRef.current;
+      const templateWidth = container.children[0]?.clientWidth || 0;
+      const scrollPosition = index * templateWidth;
+      
+      container.scrollTo({
+        left: scrollPosition,
+        behavior: 'smooth'
+      });
+    }
+  };
+
+  const handleTemplateClick = (index: number) => {
+    setSelectedIdx(index);
+    scrollToTemplate(index);
+    setIsAutoScrolling(false);
+
+    // Resume auto scrolling after 5 seconds
+    setTimeout(() => {
+      setIsAutoScrolling(true);
+    }, 5000);
+  };
+
   const templateCategories = [
     { id: 'all', name: 'All Templates' },
     { id: 'professional', name: 'Professional' },
@@ -13,60 +133,86 @@ export default function TemplatesPreview() {
     { id: 'minimalist', name: 'Minimalist' },
   ];
 
-  const templates = [
-    {
-      id: 1,
-      name: 'Executive Pro',
-      category: 'professional',
-      description: 'Elegant design for experienced professionals and executives',
-      preview: '/api/placeholder/300/380',
-      popular: true
-    },
-    {
-      id: 2,
-      name: 'Modern Edge',
-      category: 'modern',
-      description: 'Contemporary design with clean lines and subtle colors',
-      preview: '/api/placeholder/300/380',
-      popular: false
-    },
-    {
-      id: 3,
-      name: 'Creative Portfolio',
-      category: 'creative',
-      description: 'For designers, artists, and creative professionals',
-      preview: '/api/placeholder/300/380',
-      popular: true
-    },
-    {
-      id: 4,
-      name: 'Minimalist',
-      category: 'minimalist',
-      description: 'Clean, simple, and focused on content',
-      preview: '/api/placeholder/300/380',
-      popular: false
-    },
-    {
-      id: 5,
-      name: 'Corporate Classic',
-      category: 'professional',
-      description: 'Timeless design for corporate environments',
-      preview: '/api/placeholder/300/380',
-      popular: false
-    },
-    {
-      id: 6,
-      name: 'Tech Specialist',
-      category: 'modern',
-      description: 'Designed for IT professionals and developers',
-      preview: '/api/placeholder/300/380',
-      popular: true
-    },
-  ];
+ const renderTemplate = (templateData: TemplateData, index: number) => {
+  const TemplateComponent = templateData.component;
 
-  const filteredTemplates = activeCategory === 'all' 
-    ? templates 
-    : templates.filter(template => template.category === activeCategory);
+  if (!TemplateComponent) {
+    return (
+      <div className="flex items-center justify-center">
+        <p className="text-red-500">Template {templateData.name} not found</p>
+      </div>
+    );
+  }
+
+  const sampleData = {
+    heading: {
+      firstName: 'John',
+      surname: 'Doe',
+      email: 'john.doe@example.com',
+      phone: '+1 234 567 8900',
+      city: 'New York',
+      country: 'NY',
+      pin: '10001',
+      profession: 'Software Engineer',
+      photo: null,
+    },
+    summary: 'Passionate software engineer with 3+ years of experience in developing scalable web applications using modern technologies.',
+    experience: [
+      {
+        jobTitle: 'Software Engineer',
+        company: 'Tech Corp',
+        location: 'New York, NY',
+        startDate: '2022-01',
+        endDate: null,
+        current: true,
+        description: 'Built scalable web applications using React and Node.js.',
+      },
+    ],
+    education: [
+      {
+        degree: 'Bachelor of Science',
+        fieldOfStudy: 'Computer Science',
+        schoolName: 'University of Technology',
+        startDate: '2018-09',
+        endDate: '2022-05',
+        grade: '3.8 GPA',
+        description: 'Focused on software engineering and algorithms.',
+      },
+    ],
+    skills: ['JavaScript', 'React', 'Node.js', 'Python', 'AWS', 'Git'],
+  };
+
+  try {
+    return (
+      <div className="relative h-[30rem] w-full overflow-hidden rounded-lg border border-gray-200 bg-white shadow-md">
+        <div className="scale-50 origin-top-left w-[200%] h-[200%]">
+          <TemplateComponent formData={sampleData} />
+        </div>
+        
+        <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-70 text-white text-center py-3">
+          <span className="text-sm font-medium">{templateData.name}</span>
+        </div>
+        {templateData.recommended && (
+          <div className="absolute top-3 right-3 bg-blue-500 text-white text-xs font-bold px-2 py-1 rounded">
+            RECOMMENDED
+          </div>
+        )}
+      </div>
+    );
+  } catch (error) {
+    console.error(`Error rendering template ${templateData.name}:`, error);
+    return (
+      <div className="flex items-center justify-center h-96 rounded-lg border border-gray-200 bg-gray-100">
+        <p className="text-red-500">Error loading {templateData.name} template</p>
+      </div>
+    );
+  }
+};
+
+  const handleUseTemplate = (index: number) => {
+    console.log(`Selected template: ${filteredTemplates[index].name}`);
+    // Implement template selection logic here
+  };
 
   return (
     <section className="py-16 bg-gradient-to-b from-purple-50 to-white">
@@ -76,7 +222,7 @@ export default function TemplatesPreview() {
             Professional Resume Templates
           </h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Choose from our collection of ATS-friendly templates designed to help you land your dream job
+            Choose from our collection of ATS-friendly templates designed for different career fields
           </p>
         </div>
 
@@ -85,7 +231,10 @@ export default function TemplatesPreview() {
           {templateCategories.map((category) => (
             <button
               key={category.id}
-              onClick={() => setActiveCategory(category.id)}
+              onClick={() => {
+                setActiveCategory(category.id);
+                setSelectedIdx(0); // Reset to first template when category changes
+              }}
               className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
                 activeCategory === category.id
                   ? 'bg-purple-600 text-white shadow-md'
@@ -97,37 +246,45 @@ export default function TemplatesPreview() {
           ))}
         </div>
 
-        {/* Templates Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredTemplates.map((template) => (
-            <div key={template.id} className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-              <div className="relative">
-                <div className="h-48 bg-gradient-to-r from-purple-100 to-purple-50 flex items-center justify-center overflow-hidden">
-                  <div className="w-4/5 h-36 bg-white shadow-lg rounded-sm flex items-center justify-center text-gray-400">
-                    📄 Resume Preview
-                  </div>
-                </div>
-                {template.popular && (
-                  <span className="absolute top-4 right-4 bg-gradient-to-r from-purple-600 to-purple-500 text-white text-xs font-semibold px-3 py-1 rounded-full shadow-md">
-                    POPULAR
-                  </span>
-                )}
-              </div>
-              
-              <div className="p-6">
-                <div className="flex justify-between items-start mb-2">
-                  <h3 className="text-xl font-semibold text-gray-900">{template.name}</h3>
-                  <span className="text-xs font-medium px-2 py-1 rounded-full bg-purple-100 text-purple-800">
-                    {template.category.charAt(0).toUpperCase() + template.category.slice(1)}
-                  </span>
-                </div>
-                <p className="text-gray-600 text-sm mb-5">{template.description}</p>
-                <button className="w-full bg-purple-900 text-white font-medium py-3 rounded-lg transition-all duration-200 transform hover:scale-[1.02] shadow-md hover:shadow-lg">
-                  Use This Template
-                </button>
-              </div>
+        {/* Templates Container with Horizontal Scroll */}
+        <div 
+          ref={scrollContainerRef}
+          className="flex overflow-x-auto snap-x snap-mandatory gap-6 pb-6 mb-8 hide-scrollbar"
+          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+        >
+          {filteredTemplates.map((tpl, idx) => (
+            <div
+              key={idx}
+              className="flex-shrink-0 w-[28rem] snap-start cursor-pointer hover:scale-105 transition-transform duration-200"
+              onClick={() => handleTemplateClick(idx)}
+            >
+              {renderTemplate(tpl, idx)}
             </div>
           ))}
+        </div>
+
+        {/* Navigation Dots */}
+        <div className="flex justify-center mb-8">
+          {filteredTemplates.map((_, idx) => (
+            <button
+              key={idx}
+              onClick={() => handleTemplateClick(idx)}
+              className={`w-3 h-3 rounded-full mx-1 transition-colors duration-200 ${
+                idx === selectedIdx ? 'bg-purple-600' : 'bg-gray-300 hover:bg-gray-400'
+              }`}
+              aria-label={`View ${filteredTemplates[idx]?.name || 'template'}`}
+            />
+          ))}
+        </div>
+
+        {/* Action buttons */}
+        <div className="flex flex-row justify-center gap-8 mb-8 items-center">
+          <button
+            className="bg-purple-700 text-white border-none font-bold text-lg rounded-full py-2 px-8 cursor-pointer shadow-sm hover:bg-purple-800 transition-colors"
+            onClick={() => handleUseTemplate(selectedIdx)}
+          >
+            Use {filteredTemplates[selectedIdx]?.name || 'this template'}
+          </button>
         </div>
 
         {/* CTA Section */}
@@ -140,7 +297,19 @@ export default function TemplatesPreview() {
             Generate Your Resume Now
           </button>
         </div>
+
+        <style jsx>{`
+          .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+          }
+          .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+          }
+        `}</style>
       </div>
     </section>
   );
-}
+};
+
+export default TemplatesPreview;

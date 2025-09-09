@@ -133,8 +133,8 @@ export default function InterviewPrepPricing() {
 
   const handlePayment = async (planName: string, price: string) => {
     if (!userEmail || !session?.user?.id) {
-      alert('Please log in to make a purchase.');
-      return;
+ router.push('/login');
+       return;
     }
 
     try {
