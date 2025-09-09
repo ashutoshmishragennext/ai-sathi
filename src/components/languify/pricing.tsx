@@ -72,8 +72,8 @@ export default function InterviewPrepPricing() {
     {
       name: 'Basic Plan',
       duration: '1 Test Access',
-      price: '50',
-      originalPrice: '100',
+      price: '99',
+      originalPrice: '149',
       description: 'Perfect for quick interview preparation',
       features: [
         '1 Test Access',
@@ -90,8 +90,8 @@ export default function InterviewPrepPricing() {
     {
       name: 'Standard Plan',
       duration: '1 Months Access',
-      price: '200',
-      originalPrice: '750',
+      price: '199',
+      originalPrice: '249',
       description: 'Most popular choice for comprehensive prep',
       features: [
         'Everything in Basic Plan',
@@ -104,13 +104,13 @@ export default function InterviewPrepPricing() {
       icon: <Users className="w-6 h-6" />,
       cta: 'Choose Standard',
       popular: true,
-      savings: 'Save ₹550'
+      savings: 'Save ₹50'
     },
     {
       name: 'Premium Plan',
       duration: '6 Months Access',
-      price: '1000',
-      originalPrice: '2000',
+      price: '999',
+      originalPrice: '1199',
       description: 'Complete interview mastery package',
       features: [
         'Everything in Standard Plan',
@@ -123,7 +123,7 @@ export default function InterviewPrepPricing() {
       icon: <Trophy className="w-6 h-6" />,
       cta: 'Go Premium',
       popular: false,
-      savings: 'Save ₹1000'
+      savings: 'Save ₹200'
     }
   ];
 
