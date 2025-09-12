@@ -3,10 +3,11 @@ import { useSession } from 'next-auth/react'
 import React, { useEffect, useState } from 'react'
 
 const Page = () => {
-  const { data: session, status } = useSession()
+  const { data: session } = useSession()
   const userEmail = session?.user?.email
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState('')
+  const [redirectUrl, setRedirectUrl] = useState<string | null>(null)
 
   useEffect(() => {
     const fetchRedirectUrl = async () => {
@@ -18,10 +19,7 @@ const Page = () => {
         const data = await res.json()
 
         if (!data.error && data.redirectUrl) {
-          // open in a new tab
-          // window.open(data.redirectUrl, '_blank')
-          // 👉 if you want same tab instead:
-          window.location.href = data.redirectUrl
+          setRedirectUrl(data.redirectUrl) // ✅ set link instead of redirect
         } else {
           setError(data.error || 'No redirect URL found')
         }
@@ -53,21 +51,45 @@ const Page = () => {
         <div className="bg-white rounded-lg shadow-lg p-6 max-w-md w-full border border-purple-200">
           <div className="text-center">
             <div className="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-purple-100">
-              <svg className="h-6 w-6 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+              <svg
+                className="h-6 w-6 text-purple-600"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
+                />
               </svg>
             </div>
-            <h3 className="mt-4 text-lg font-medium text-purple-900">Payment Setup Required</h3>
+            <h3 className="mt-4 text-lg font-medium text-purple-900">
+              Payment Setup Required
+            </h3>
             <p className="mt-2 text-sm text-purple-700">
-              We couldn't generate your payment link. Please contact our administration team for assistance.
+              We couldn't generate your payment link. Please contact our administration team for
+              assistance.
             </p>
             <div className="mt-6 bg-purple-50 rounded-md p-4">
               <h4 className="text-sm font-medium text-purple-800 mb-2">Contact Information:</h4>
               <p className="text-sm text-purple-700">Email: Contact@Aisaathi.com</p>
-              
             </div>
           </div>
         </div>
+      </div>
+    )
+  }
+
+  if (redirectUrl) {
+    return (
+      <div className="min-h-screen bg-gray-100 flex items-center justify-center">
+        <iframe
+          src={redirectUrl}
+          className="w-full h-screen border-0"
+          title="Payment Page"
+        />
       </div>
     )
   }
